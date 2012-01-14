@@ -40,13 +40,13 @@ public class ResultActivity extends Activity {
 		for(Ingredient nextIngredient : givenIngredients){
 			
 		}
-		createdCocktail = new Cocktail("cool cocktail", new HashMap<String, Integer>(), false, (ImageView) findViewById(R.id.cocktailIconView));
+		createdCocktail = new Cocktail("cool cocktail", new HashMap<String, Integer>(), false, "cocktailIcon");
 
         //TODO: populate w/ database combinations
-        suggestedCocktails.add( new Suggestion("Cool cocktail", (ImageView) findViewById(R.id.cocktailIconView), "gin", true, createdCocktail));
-        suggestedCocktails.add( new Suggestion("Nice cocktail", (ImageView) findViewById(R.id.cocktailIconView), "vodka", false, createdCocktail));
-        suggestedCocktails.add( new Suggestion("Genius cocktail", (ImageView) findViewById(R.id.cocktailIconView), "wiskey", true, createdCocktail));
-        suggestedCocktails.add( new Suggestion("Amazing cocktail", (ImageView) findViewById(R.id.cocktailIconView), "tequila", true, createdCocktail));
+        suggestedCocktails.add( new Suggestion("Cool cocktail", "cocktailIcon", "gin", true, createdCocktail));
+        suggestedCocktails.add( new Suggestion("Nice cocktail", "cocktailIcon", "vodka", false, createdCocktail));
+        suggestedCocktails.add( new Suggestion("Genius cocktail", "cocktailIcon", "wiskey", true, createdCocktail));
+        suggestedCocktails.add( new Suggestion("Amazing cocktail", "cocktailIcon", "tequila", true, createdCocktail));
         
 	}
 

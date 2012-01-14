@@ -13,10 +13,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
  
-public class ShelfActivity extends Activity
-{  	
+public class ShelfActivity extends Activity {  	
 	
-    private Integer[] mThumbIds = {
+    private Integer[] mThumbIds = {	
             R.drawable.bourbon_raw, R.drawable.silhouette,
             R.drawable.bourbon_raw, R.drawable.silhouette,
             R.drawable.bourbon_raw, R.drawable.silhouette,

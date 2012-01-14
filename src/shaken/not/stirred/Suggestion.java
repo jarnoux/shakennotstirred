@@ -16,9 +16,9 @@ public class Suggestion extends Cocktail {
 	
 	
 	
-	public Suggestion(String name, ImageView image, String difference,
+	public Suggestion(String name, String imageId, String difference,
 			boolean isSubsetOfOriginal, Cocktail original) {
-		super(name, original.getIngredients(), false, image);
+		super(name, original.getIngredients(), false, imageId);
 		this.getIngredients().remove(difference);
 		
 		this.difference = difference;
