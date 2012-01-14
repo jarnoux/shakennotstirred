@@ -1,24 +1,31 @@
 package shaken.not.stirred;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class Cocktail {
+public class Cocktail implements Serializable{
 
 	// Key is ingredient, value is quantity in an integer ratio
 	private HashMap<String, Integer> ingredients;
 	private final String name;
 	private final boolean isCustom;
-	private ImageView image;
+	private String imageId;
 
-	public Cocktail(String name, HashMap<String, Integer> ingredients, boolean isCustom, ImageView image) {
+	public Cocktail(String name, HashMap<String, Integer> ingredients, boolean isCustom, String imageId) {
 		this.name = name;
 		this.setIngredients(ingredients);
 		this.isCustom = isCustom;
-		this.setImage(image);
+		this.setImage(imageId);
 		
 	}
+	
+	public void addIngredient(String ingredient, int parts){
+		this.ingredients.put(ingredient, parts);
+	}
+	
 
 	public String getName() {
 		return name;
@@ -36,11 +43,22 @@ public class Cocktail {
 		return isCustom;
 	}
 
-	public ImageView getImage() {
-		return image;
+	public String getImageId() {
+		return imageId;
 	}
 
-	public void setImage(ImageView image) {
-		this.image = image;
+	public void setImage(String imageId) {
+		this.imageId = imageId;
+	}
+	
+	public enum GlassType {
+		Highball,
+		Stem,
+		Rocks,
+		Cocktail,
+		Zombie,
+		Collins,
+		Coffee,
+		Shot
 	}
 }
