@@ -1,10 +1,12 @@
 package shaken.not.stirred;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class Cocktail {
+public class Cocktail implements Serializable{
 
 	// Key is ingredient, value is quantity in an integer ratio
 	private HashMap<String, Integer> ingredients;
@@ -19,6 +21,7 @@ public class Cocktail {
 		this.setImage(image);
 		
 	}
+	
 
 	public String getName() {
 		return name;
