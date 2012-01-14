@@ -1,61 +1,98 @@
 package shaken.not.stirred;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.FrameLayout;
-import android.widget.FrameLayout.LayoutParams;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-
-public class ShelfActivity extends Activity implements OnTouchListener {
-	private final static int START_DRAGGING = 0;
-	private final static int STOP_DRAGGING = 1;
-
-	private Button btn;
-	private FrameLayout layout;
-	private int status;
-	private LayoutParams params;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+ 
+public class ShelfActivity extends Activity
+{  	
 	
-	private ImageView image;
+    private Integer[] mThumbIds = {
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher,
+            R.drawable.bourbon_raw, R.drawable.ic_launcher
+    };
+    
+    private GridView gridview;
+    private ImageAdapter ia;
 	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        layout = (FrameLayout) findViewById(R.id.LinearLayout01);
-        
-        btn = (Button) findViewById(R.id.button1);
-		btn.setDrawingCacheEnabled(true);
-		btn.setOnTouchListener(this);
-		
-		params = new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT);
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.shelf);
+
+	    gridview = (GridView) findViewById(R.id.gridview);
+	    ia = new ImageAdapter(this);
+	    gridview.setAdapter(ia);
+
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	    	    setItemId(position);
+	    	    gridview.setAdapter(ia);
+	        }
+	    });
+	}
+	
+    public boolean setItemId(int position) {
+    	if (mThumbIds[position] == R.drawable.bourbon_raw) {
+    		Log.d("BLAH", String.valueOf(position));
+    		mThumbIds[position] = R.drawable.ic_launcher;
+    		return true;
+    	}
+    	
+    	return false;
     }
     
-	public boolean onTouch(View view, MotionEvent me) {
-		if (me.getAction() == MotionEvent.ACTION_DOWN) {
-			status = START_DRAGGING;
-			image = new ImageView(this);
-			image.setImageBitmap(btn.getDrawingCache());
-			layout.addView(image, params);
-		}
-		if (me.getAction() == MotionEvent.ACTION_UP) {
-			status = STOP_DRAGGING;
-			Log.i("Drag", "Stopped Dragging");
-		} else if (me.getAction() == MotionEvent.ACTION_MOVE) {
-			if (status == START_DRAGGING) {
-				System.out.println("Dragging");
-				image.setPadding((int) me.getRawX(), (int) me.getRawY(), 0, 0);
-				image.invalidate();
-			}
-		}
-		return false;
+	
+	public class ImageAdapter extends BaseAdapter {
+	    private Context mContext;
+
+	    public ImageAdapter(Context c) {
+	        mContext = c;
+	    }
+
+	    public int getCount() {
+	        return mThumbIds.length;
+	    }
+
+	    public Object getItem(int position) {
+	        return null;
+	    }
+
+	    public long getItemId(int position) {
+	        return 0;
+	    }
+
+	    // create a new ImageView for each item referenced by the Adapter
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	        ImageView imageView;
+	        if (convertView == null) {  // if it's not recycled, initialize some attributes
+	            imageView = new ImageView(mContext);
+	            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+	            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+	            imageView.setPadding(8, 8, 8, 8);
+	        } else {
+	            imageView = (ImageView) convertView;
+	        }
+
+	        imageView.setImageResource(mThumbIds[position]);
+	        return imageView;
+	    }
 	}
-    
 }
