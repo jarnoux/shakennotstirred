@@ -17,17 +17,17 @@ public class ShelfActivity extends Activity
 {  	
 	
     private Integer[] mThumbIds = {
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher,
-            R.drawable.bourbon_raw, R.drawable.ic_launcher
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette,
+            R.drawable.bourbon_raw, R.drawable.silhouette
     };
     
     private GridView gridview;
@@ -52,7 +52,7 @@ public class ShelfActivity extends Activity
     public boolean setItemId(int position) {
     	if (mThumbIds[position] == R.drawable.bourbon_raw) {
     		Log.d("BLAH", String.valueOf(position));
-    		mThumbIds[position] = R.drawable.ic_launcher;
+    		mThumbIds[position] = R.drawable.silhouette;
     		return true;
     	}
     	
