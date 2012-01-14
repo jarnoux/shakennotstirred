@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, MoonShineActivity!</string>
+    <string name="hello">Salut Jacques!!</string>
     <string name="app_name">MoonShine</string>
+    <string name="suggestionText">More Suggestions...</string>
 
 </resources>

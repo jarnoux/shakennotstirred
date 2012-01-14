@@ -1,6 +1,8 @@
 package shaken.not.stirred;
 
-public class Ingredient {
+import java.io.Serializable;
+
+public class Ingredient implements Serializable{
 	private String name;
 	private int sweetness;
 	private int herbalness;
