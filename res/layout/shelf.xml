@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:id="@+id/gridview"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent"
-    android:columnWidth="60dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="10dp"
-    android:horizontalSpacing="10dp"
-    android:stretchMode="columnWidth"
-    android:gravity="center"
-/>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shelf"
+        >
+
+    <TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="TextView" />
+
+	<GridView
+	    android:id="@+id/gridview"
+	    android:layout_width="fill_parent"
+	    android:layout_height="361dp"
+	    android:columnWidth="60dp"
+	    android:gravity="center"
+	    android:horizontalSpacing="10dp"
+	    android:numColumns="auto_fit"
+	    android:stretchMode="columnWidth"
+	    android:verticalSpacing="5dp" >
+
+	</GridView>
+
+	<FrameLayout
+	    android:id="@+id/frameLayout1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:layout_gravity="bottom">
+
+	    <ImageView
+	        android:id="@+id/shaker"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:src="@drawable/shaker_open" 
+	        android:paddingBottom="10dp"/>
+	</FrameLayout>
+
+</FrameLayout>
+

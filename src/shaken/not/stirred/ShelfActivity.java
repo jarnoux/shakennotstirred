@@ -1,11 +1,16 @@
 package shaken.not.stirred;
 
+import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -15,84 +20,101 @@ import android.widget.AdapterView.OnItemClickListener;
  
 public class ShelfActivity extends Activity
 {  	
-	
-    private Integer[] mThumbIds = {
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette,
-            R.drawable.bourbon_raw, R.drawable.silhouette
-    };
+    private ArrayList<String> listName;  
+    private ArrayList<Integer> listIcon; 
+    private GridviewAdapter mAdapter;  
+    private GridView gridView;  
+    private ImageView shaker;
     
-    private GridView gridview;
-    private ImageAdapter ia;
-	
+    Animation hyperspaceJump;
+    private Animation anim;
+    
 	public void onCreate(Bundle savedInstanceState) {
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE); 
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.shelf);
-
-	    gridview = (GridView) findViewById(R.id.gridview);
-	    ia = new ImageAdapter(this);
-	    gridview.setAdapter(ia);
-
-	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	    
+        prepareList();  
+	    
+	    hyperspaceJump = 
+	            AnimationUtils.loadAnimation(this, R.anim.hyperspace_jump);
+        
+	    shaker = (ImageView) findViewById (R.id.shaker);
+	    
+        // prepared arraylist and passed it to the Adapter class  
+        mAdapter = new GridviewAdapter(this,listName, listIcon);  
+  
+        // Set custom adapter to gridview  
+        gridView = (GridView) findViewById(R.id.gridview);  
+        gridView.setAdapter(mAdapter);  
+        
+        // Implement On Item click listener  
+        gridView.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	    	    setItemId(position);
-	    	    gridview.setAdapter(ia);
+	    	    gridView.setAdapter(mAdapter);
+	    	    shaker.startAnimation(hyperspaceJump);
+
 	        }
 	    });
+
 	}
 	
+    public void prepareList()  
+    {  
+          listName = new ArrayList<String>();  
+  
+          listName.add("India");  
+          listName.add("Brazil");  
+          listName.add("Canada");  
+          listName.add("China");  
+          listName.add("France");  
+          listName.add("Germany");  
+          listName.add("Iran");  
+          listName.add("Italy");  
+          listName.add("Japan");  
+          listName.add("Korea");  
+          listName.add("Mexico");  
+          listName.add("Netherlands");  
+          listName.add("Portugal");  
+          listName.add("Russia");  
+          listName.add("Saudi Arabia");  
+          listName.add("Spain");  
+          listName.add("Turkey");  
+          listName.add("United Kingdom");  
+          listName.add("United States");  
+
+          listIcon = new ArrayList<Integer>();  
+          
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.blue_curacao);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.blue_curacao);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.amaretto);  
+          listIcon.add(R.drawable.campari);  
+          listIcon.add(R.drawable.campari);  
+    }  
+	
     public boolean setItemId(int position) {
-    	if (mThumbIds[position] == R.drawable.bourbon_raw) {
+    	if (listIcon.get(position) != R.drawable.silhouette) {
     		Log.d("BLAH", String.valueOf(position));
-    		mThumbIds[position] = R.drawable.silhouette;
+    		listIcon.set(position, R.drawable.silhouette);
     		return true;
     	}
     	
     	return false;
-    }
+    } 
     
-	
-	public class ImageAdapter extends BaseAdapter {
-	    private Context mContext;
-
-	    public ImageAdapter(Context c) {
-	        mContext = c;
-	    }
-
-	    public int getCount() {
-	        return mThumbIds.length;
-	    }
-
-	    public Object getItem(int position) {
-	        return null;
-	    }
-
-	    public long getItemId(int position) {
-	        return 0;
-	    }
-
-	    // create a new ImageView for each item referenced by the Adapter
-	    public View getView(int position, View convertView, ViewGroup parent) {
-	        ImageView imageView;
-	        if (convertView == null) {  // if it's not recycled, initialize some attributes
-	            imageView = new ImageView(mContext);
-	            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-	            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-	            imageView.setPadding(8, 8, 8, 8);
-	        } else {
-	            imageView = (ImageView) convertView;
-	        }
-
-	        imageView.setImageResource(mThumbIds[position]);
-	        return imageView;
-	    }
-	}
 }
