@@ -1,5 +1,6 @@
 package shaken.not.stirred;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -36,14 +37,14 @@ public class RecipeActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-/*
+
 		HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
 		ingredients.put("Gin", 4);
 		ingredients.put("Lime Juice", 1);
 		ingredients.put("Simple Syrup", 1);
 		Cocktail cocktail = new Cocktail("Gimlet", ingredients, true, 1);
-*/		
-		Cocktail cocktail = null;
+		
+		//Cocktail cocktail = null;
 		Bundle extras = getIntent().getExtras();
 		if(extras!=null) {
 			cocktail = (Cocktail) extras.getSerializable("cocktail");
@@ -78,13 +79,10 @@ public class RecipeActivity extends Activity {
 			            this, R.array.intsOneToTen, android.R.layout.simple_spinner_item);
 			    adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 			    spinner.setAdapter(adapter);
-				int ing = cocktail.getIngredients().get(s);
+				int parts = cocktail.getIngredients().get(s);
+				spinner.setSelection(parts-1);
 				//parts.setText(ing + " custom parts");
 				spinner.setLayoutParams(new TableRow.LayoutParams(120, 60));
-				
-				
-				
-				
 				
 				tr.addView(spinner);
 				
@@ -106,6 +104,8 @@ public class RecipeActivity extends Activity {
 		// chl = chl.substring(0, chl.length()-1);
 		
 		updateAnalysis(cocktail);
+		
+		DataStore.getInstance(this).getIngredients().get("rum").ge
 		
 		 Button tweet = (Button) findViewById(R.id.tweetButton);
 		 /*

@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="118dp"
-        android:layout_height="170dp"
+        android:layout_width="69dp"
+        android:layout_height="99dp"
         android:src="@drawable/brandy" />
 
     <TextView
