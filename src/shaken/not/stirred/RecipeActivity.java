@@ -79,7 +79,7 @@ public class RecipeActivity extends Activity {
 			TextView ingredient = new TextView(this);
 			ingredient.setText(s + "     ");
 			ingredient.setTextColor(Color.WHITE);
-			ingredient.setTextSize(16);
+			ingredient.setTextSize(20);
 			ingredient.setShadowLayer(2, 0, 5, Color.BLACK);
 			
 
@@ -111,7 +111,7 @@ public class RecipeActivity extends Activity {
 				}
 				
 				parts.setTextColor(Color.WHITE);
-				parts.setTextSize(16);
+				parts.setTextSize(20);
 				parts.setShadowLayer(2, 0, 5, Color.BLACK);
 				
 				

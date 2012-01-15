@@ -1,1 +1,410 @@
-Name,Is Drink?,Parts,Type of GlassBourbon & 7Up,1,,HighballBourbon,0,1,Highball7Up,0,3,HighballBrandy Press,1,,HighballBrandy,0,1,HighballSoda,0,1,Highball7Up,0,1,HighballCuba Libre,1,,HighballRum,0,1,HighballCoke,0,3,HighballLime,0,-1,HighballGin & Tonic,1,,HighballGin,0,1,HighballTonic,0,3,HighballLime,0,-1,HighballHighball,1,,HighballBourbon,0,1,HighballGinger Ale,0,3,HighballPresbyterian,1,,HighballBourbon,0,1,HighballSoda,0,1,Highball7Up,0,1,HighballLemon Twist,0,,HighballRum & Coke,1,,HighballRum,0,1,HighballCoke,0,3,HighballScotch & Soda,1,,HighballScotch,0,1,HighballFill With Soda,0,2,HighballVodka Press,1,,HighballVodka,0,1,HighballSoda,0,1,Highball7Up,0,1,HighballLemon Twist,0,-1,HighballVodka & Tonic,1,,HighballVodka,0,1,HighballFill With Tonic,0,3,HighballLime,0,-1,HighballWhiskey & Water,1,,HighballBourbon,0,1,HighballFill With Water,0,3,HighballMalibu Bay Breeze,1,,HighballVodka,0,1,HighballPineapple Juice,0,1,HighballCranberry Juice,0,1,Highball
+Name,Is Drink?,Parts,Type of Glass
+Bourbon & 7Up,1,,Highball
+Bourbon,0,1,Highball
+7Up,0,3,Highball
+Brandy Press,1,,Highball
+Brandy,0,1,Highball
+Club Soda,0,1,Highball
+7Up,0,1,Highball
+Cuba Libre,1,,Highball
+Rum,0,1,Highball
+Coke,0,3,Highball
+Lime,0,-1,Highball
+Gin & Tonic,1,,Highball
+Gin,0,1,Highball
+Tonic,0,3,Highball
+Lime,0,-1,Highball
+Highball,1,,Highball
+Bourbon,0,1,Highball
+Ginger Ale,0,3,Highball
+Presbyterian,1,,Highball
+Bourbon,0,1,Highball
+Club Soda,0,1,Highball
+7Up,0,1,Highball
+Lemon Twist,0,-1,Highball
+Rum & Coke,1,,Highball
+Rum,0,1,Highball
+Coke,0,3,Highball
+Scotch & Club Soda,1,,Highball
+Scotch,0,1,Highball
+ Club Soda,0,2,Highball
+Vodka Press,1,,Highball
+Vodka,0,1,Highball
+Club Soda,0,1,Highball
+7Up,0,1,Highball
+Lemon Twist,0,-1,Highball
+Vodka & Tonic,1,,Highball
+Vodka,0,1,Highball
+ Tonic,0,3,Highball
+Lime,0,-1,Highball
+Whiskey & Water,1,,Highball
+Bourbon,0,1,Highball
+ Water,0,3,Highball
+Malibu Bay Breeze,1,,Highball
+Vodka,0,1,Highball
+Pineapple Juice,0,1,Highball
+Cranberry Juice,0,1,Highball
+Cape Cod,1,,Highball
+Vodka,0,1,Highball
+Cranberry Juice,0,3,Highball
+Gold Driver,1,,Highball
+Tequila,0,1,Highball
+Orange Juice,0,3,Highball
+Greyhound,1,,Highball
+Vodka,0,1,Highball
+Grapefruit Juice,0,3,Highball
+Salty Dog,1,,Highball
+Vodka,0,1,Highball
+Grapefruit Juice,0,3,Highball
+Salt Rim of Glass,0,-1,Highball
+Screwdriver,1,,Highball
+Vodka,0,1,Highball
+Orange Juice,0,3,Highball
+Sea Breeze,1,,Highball
+ Vodka,0,1,Highball
+Cranberry Juice,0,1,Highball
+Grapefruit Juice,0,1,Highball
+Brandy Manhattan,1,,Stem
+Brandy,0,7,Stem
+Sweet Vermouth,0,1,Stem
+Cherry,0,-1,Stem
+Dry Manhattan,1,,Stem
+Bourbon,0,7,Stem
+Dry Vermouth,0,1,Stem
+Dry Rob Roy,1,,Stem
+Scotch,0,7,Stem
+Dry Vermouth,0,1,Stem
+Perfect Manhattan,1,,Stem
+Bourbon,0,7,Stem
+Dry Vermouth,0,1,Stem
+Sweet Vermouth,0,1,Stem
+Gibson,1,,Stem
+Gin,0,7,Stem
+Dry Vermouth,0,1,Stem
+Onion,0,-1,Stem
+Manhattan,1,,Stem
+Bourbon,0,7,Stem
+Sweet Vermouth,0,1,Stem
+Cherry,0,-1,Stem
+Martini,1,,Stem
+Gin,0,7,Stem
+Dry Vermouth,0,1,Stem
+Olive,0,-1,Stem
+Perfect Brandy Manhattan,1,,Stem
+Brandy,0,7,Stem
+Dry Vermouth,0,1,Stem
+Sweet Vermouth,0,1,Stem
+Lemon Twist,0,-1,Stem
+Perfect Rob Roy,1,,Stem
+Scotch,0,7,Stem
+Dry Vermouth,0,1,Stem
+Sweet Vermouth,0,1,Stem
+Lemon Twist,0,-1,Stem
+Rob Roy,1,,Stem
+Scotch,0,7,Stem
+Sweet Vermouth,0,1,Stem
+Vodka Martini,1,,Stem
+Vodka,0,7,Stem
+Dry Vermouth,0,1,Stem
+Olive,0,-1,Stem
+Brandy Man Rocks,1,,Rocks
+Brandy,0,7,Rocks
+Sweet Vermouth,0,1,Rocks
+Cherry,0,-1,Rocks
+Perfect Man Over,1,,Rocks
+Bourbon,0,7,Rocks
+Dry Vermouth,0,1,Rocks
+Sweet Vermouth,0,1,Rocks
+Lemon Twist,0,-1,Rocks
+Cosmopolitan,1,,Cocktail
+Vodka,0,8,Cocktail
+Triple Sec,0,2,Cocktail
+Lime Juice,0,2,Cocktail
+Cranberry Juice,0,1,Cocktail
+Lime Wedge,0,-1,Cocktail
+Gimlet,1,,Cocktail
+Gin,0,3,Cocktail
+Lime Juice,0,1,Cocktail
+Lime,0,-1,Cocktail
+Kamikaze,1,,Cocktail
+Vodka,0,4,Cocktail
+Triple Sec,0,1,Cocktail
+Lime Juice,0,1,Cocktail
+Lemon Drop,1,,Cocktail
+Vodka,0,4,Cocktail
+Triple Sec,0,1,Cocktail
+Sweet & Sour,0,1,Cocktail
+Sugar Rim,0,-1,Cocktail
+Lemon Twist,0,-1,Cocktail
+Purple Hooter,1,,Cocktail
+Vodka,0,4,Cocktail
+Chambord,0,1,Cocktail
+Sweet & Sour,0,1,Cocktail
+Sidecar,1,,Cocktail
+Brandy,0,4,Cocktail
+Triple Sec,0,1,Cocktail
+Sweet & Sour,0,1,Cocktail
+Sugar Rim,0,-1,Cocktail
+Lemon Twist,0,-1,Cocktail
+Vodka Gimlet,1,,Cocktail
+Vodka,0,3,Cocktail
+Lime Juice,0,1,Cocktail
+Lime Wedge,0,-1,Cocktail
+Whiskey Sour,1,,Cocktail
+Bourbon,0,1,Cocktail
+Sweet & Sour,0,2,Cocktail
+Cherry,0,-1,Cocktail
+Amaretto Sour,1,,Cocktail
+ Amaretto,0,1,Cocktail
+Sweet & Sour,0,2,Cocktail
+Cherry,0,-1,Cocktail
+Long Island Iced Tea,1,,Cocktail
+Vodka,0,1,Cocktail
+Gin,0,1,Cocktail
+Rum,0,1,Cocktail
+Tequila,0,1,Cocktail
+Triple Sec,0,1,Cocktail
+Sweet & Sour,0,2,Cocktail
+Coke,0,1,Cocktail
+Lemon,0,-1,Cocktail
+Electric Iced Tea,1,,Cocktail
+Vodka,0,1,Cocktail
+Gin,0,1,Cocktail
+Rum,0,1,Cocktail
+Tequila,0,1,Cocktail
+Blue Curacao,0,1,Cocktail
+Sweet & Sour,0,2,Cocktail
+7Up,0,1,Cocktail
+Lemon,0,-1,Cocktail
+Gin Fizz,1,,Highball
+Gin,0,1,Highball
+Sweet & Sour,0,2,Highball
+Club Soda,0,1,Highball
+Cherry,0,-1,Highball
+Sloe Gin Fizz,1,,Highball
+Sloe Gin,0,1,Highball
+Sweet & Sour,0,2,Highball
+Club Soda,0,1,Highball
+Cherry,0,-1,Highball
+Bacardi Cocktail,1,,Cocktail
+Rum,0,2,Cocktail
+Grenadine,0,1,Cocktail
+Sweet & Sour,0,3,Cocktail
+Cherry,0,-1,Cocktail
+Mai Tai,1,,Highball
+Light Rum,0,2,Highball
+Dark Rum,0,1,Highball
+Sweet & Sour,0,2,Highball
+Pineapple Juice,0,1,Highball
+Orange Juice,0,1,Highball
+Grenadine,0,1,Highball
+Cherry,0,-1,Highball
+Orange Juice,0,-1,Highball
+Zombie,1,,Zombie
+Light Rum,0,2,Zombie
+Dark Rum,0,2,Zombie
+Creme de Almond,0,1,Zombie
+Triple Sec,0,1,Zombie
+Orange Juice,0,2,Zombie
+Sweet & Sour,0,2,Zombie
+Alabama Slammer,1,,Collins
+Amaretto,0,1,Collins
+Sloe Gin,0,1,Collins
+Bourbon,0,1,Collins
+Sweet & Sour,0,,Collins
+Orange Juice,0,1,Collins
+Freddy Fudpucker,1,,Collins
+Tequila,0,2,Collins
+Orange Juice,0,2,Collins
+Galliano,0,1,Collins
+Fuzzy Navel,1,,Collins
+Peach Schnapps,0,1,Collins
+Orange Juice,0,3,Collins
+Hairy Navel,1,,Collins
+Vodka,0,1,Collins
+Peach Schnapps,0,2,Collins
+Orange Juice,0,2,Collins
+Harvey Wallbanger,1,,Collins
+Vodka,0,2,Collins
+Orange Juice,0,2,Collins
+Galliano,0,1,Collins
+Sex On The Beach,1,,Highball
+Vodka,0,1,Highball
+Peach Schnapps,0,2,Highball
+Orange Juice,0,2,Highball
+Cranberry Juice,0,2,Highball
+Sloe Screw,1,,Highball
+Sloe Gin,0,1,Highball
+Orange Juice,0,3,Highball
+Sloe Comfortable Screw,1,,Highball
+Sloe Gin,0,2,Highball
+Orange Juice,0,2,Highball
+Bourbon,0,1,Highball
+Sloe Comfortable Screw up Against the Wall,1,,Highball
+Sloe Gin,0,2,Highball
+Bourbon,0,1,Highball
+Orange Juice,0,2,Highball
+Galliano,0,1,Highball
+Tequila Sunrise,1,,Highball
+Tequila,0,2,Highball
+Orange Juice,0,2,Highball
+Grenadine,0,1,Highball
+Cherry,0,-1,Highball
+Creamsicle,1,,Cocktail
+Vodka,0,1,Cocktail
+Triple Sec,0,1,Cocktail
+Orange Juice,0,1,Cocktail
+Cream,0,3,Cocktail
+Bloody Mary,1,,Collins
+Vodka,0,1,Collins
+Pepper,0,-1,Collins
+Salt,0,-1,Collins
+Worcestershire Sauce,0,-1,Collins
+Tabasco Sauce,0,-1,Collins
+Tomato Juice,0,2,Collins
+Old Fashioned,1,,Rocks
+Sugar Cube,0,-1,Rocks
+Bitters,0,-1,Rocks
+Orance Wedge,0,-1,Rocks
+Club Soda,0,1,Rocks
+Bourbon,0,4,Rocks
+Black Russian,1,,Rocks
+Vodka,0,3,Rocks
+Kahlua,0,1,Rocks
+Brave Bull,1,,Rocks
+1  Tequila,0,3,Rocks
+ Kahlua,0,1,Rocks
+Dirty Mother,1,,Rocks
+Brandy,0,3,Rocks
+Kahlua,0,1,Rocks
+Godfather,1,,Rocks
+Scotch,0,3,Rocks
+Amaretto,0,1,Rocks
+Godmother,1,,Rocks
+Vodka,0,3,Rocks
+Amaretto,0,1,Rocks
+King Alphonse,1,,Rocks
+Creme de Cacao,0,3,Rocks
+Cream,0,1,Rocks
+Rusty Nail,1,,Rocks
+Scotch,0,3,Rocks
+Drambuie,0,1,Rocks
+Campari & Club Soda,1,,Rocks
+Campari,0,1,Rocks
+Club Soda,0,3,Rocks
+Lemon Twist,0,-1,Rocks
+Blue Margarita,1,,Cocktail
+Salt Rim,0,-1,Cocktail
+Tequila,0,2,Cocktail
+Blue Curacao,0,1,Cocktail
+Sweet & Sour,0,3,Cocktail
+Lime,0,-1,Cocktail
+Daiquiri,1,,Cocktail
+Light Rum,0,1,Cocktail
+Sweet & Sour,0,2,Cocktail
+Fresh Fruit Daiquiri,1,,Cocktail
+ Light Rum,0,1,Cocktail
+Sweet & Sour,0,2,Cocktail
+ Cup Fruit Of Choice,0,-1,Cocktail
+Garnish With Fruit Used,0,-1,Cocktail
+Margarita,1,,Cocktail
+Salt Glass Rim,0,-1,Cocktail
+ Tequila,0,2,Cocktail
+ Triple Sec,0,1,Cocktail
+1 1/2 Sweet & Sour,0,3,Cocktail
+Lime,0,-1,Cocktail
+Bailey's Coffee,1,,Coffee
+ Bailey,0,1,Coffee
+Cream,0,1,Coffee
+Coffee,0,1,Coffee
+Whipped Cream,0,-1,Coffee
+Coffee Keioke,1,,Coffee
+ Brandy,0,4,Coffee
+ Kahlua,0,1,Coffee
+ Brown Crème de Cacao,0,1,Coffee
+Coffee,0,4,Coffee
+Whipped Cream,0,-1,Coffee
+Coffee Royal,1,,Coffee
+ Brandy,0,1,Coffee
+Coffee,0,3,Coffee
+Lemon Twist,0,-1,Coffee
+Hot Toddy,1,,Coffee
+ Bourbon,0,1,Coffee
+ Hot Water,0,3,Coffee
+Lemon Twist,0,-1,Coffee
+Irish Cofee,1,,Coffee
+Scotch,0,1,Coffee
+1 Sugar Cube,0,-1,Coffee
+Coffee,0,3,Coffee
+Whipped Cream,0,-1,Coffee
+Kahlua Coffee,1,,Coffee
+ Kahlua,0,1,Coffee
+Coffee,0,3,Coffee
+Whipped Cream,0,-1,Coffee
+Mexican Coffee,1,,Coffee
+ Tequila,0,1,Coffee
+ Kahlua,0,1,Coffee
+Coffee,0,3,Coffee
+Whipped Cream,0,-1,Coffee
+B-52,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Grand Marnier,0,1,Shot
+B-52 on a Mission,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Grand Marnier,0,1,Shot
+ 151 Rum,0,1,Shot
+Butter Ball,1,,Shot
+ Butterscotch Schnapps,0,3,Shot
+ Grand Marnier,0,2,Shot
+Cement Mixer,1,,Shot
+ Baileys,0,2,Shot
+Dash of Lime Juice,0,-1,Shot
+F-16,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Brandy,0,1,Shot
+Girl Scout Cookie,1,,Shot
+Creme de Cacao,0,1,Shot
+Creme de Menthe,0,1,Shot
+ Baileys,0,1,Shot
+Mud Slide,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Vodka,0,1,Shot
+Muddy Waters,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Vodka,0,1,Shot
+Orgasm,1,,Shot
+ Kahlua,0,1,Shot
+ Amaretto,0,1,Shot
+ Baileys,0,1,Shot
+Power Slide,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Jagermeister,0,1,Shot
+Power Mud Slide,1,,Shot
+ Kahlua,0,1,Shot
+ Baileys,0,1,Shot
+ Jagermeister,0,1,Shot
+ Vodka,0,1,Shot
+Screaming Orgasm,1,,Shot
+ Kahlua,0,1,Shot
+ Amaretto,0,1,Shot
+ Baileys,0,1,Shot
+Vodka,0,1,Shot
+Slippery Nipple,1,,Shot
+Sambuca,0,2,Shot
+ Baileys,0,1,Shot
+1 Drop Of Grenadine,0,-1,Shot
+Jolly Rancher,1,,Rock
+ Apple Schnapps,0,2,Rock
+ Triple Sec,0,2,Rock
+ Sweet & Sour,0,2,Rock
+7Up,0,1,Rock
+Mind Eraser,1,,Rock
+ Vodka,0,3,Rock
+ Kahlua,0,2,Rock
+7Up,0,1,Rock
