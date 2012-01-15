@@ -137,6 +137,7 @@
                 android:paddingBottom="10px"
                 android:paddingTop="10px" />
         </TableRow>
+
     </TableLayout>
 
        <!--  <Button
@@ -144,5 +145,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Tweet" /> -->
+
+    <Button
+        android:id="@+id/tweetButton"
+        android:layout_width="254dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Tweet" />
 
 </LinearLayout>

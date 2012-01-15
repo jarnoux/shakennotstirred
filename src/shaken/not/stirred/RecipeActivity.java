@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -31,7 +36,9 @@ import android.widget.Toast;
 public class RecipeActivity extends Activity {
 	private SharedPreferences prefs;
 	private final Handler mTwitterHandler = new Handler();
-	private Cocktail cocktail;
+	private static Cocktail cocktail;
+	final String token1 = "14759032-zRSLgyknRUc5BTp0Jz9L03eL5IM7TBh1fGPLTn2vi";
+	final String token2 = "oXaAa6yJW8nBqvvnbidFUZ0jHte2NfnR3xxxNaIfU";
 
 	final Runnable mUpdateTwitterNotification = new Runnable() {
 		public void run() {
@@ -51,7 +58,7 @@ public class RecipeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.recipe);
 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+
 		ImageView im = (ImageView) findViewById(R.id.cocktailImage);
 		im.setImageResource(cocktail.getImageId());
 
@@ -72,7 +79,6 @@ public class RecipeActivity extends Activity {
 			ingredient.setTextColor(Color.WHITE);
 			ingredient.setTextSize(20);
 			ingredient.setShadowLayer(2, 0, 5, Color.BLACK);
-			
 
 			if (cocktail.isCustom()) {
 				Spinner spinner = new Spinner(this);
@@ -92,22 +98,22 @@ public class RecipeActivity extends Activity {
 			} else {
 				TextView parts = new TextView(this);
 				int ingPart = cocktail.getIngredients().get(s);
-				
-				if(ingPart > 1) {
+
+				if (ingPart > 1) {
 					parts.setText("• " + ingPart + " parts ");
-				} else if(ingPart == 1) {
+				} else if (ingPart == 1) {
 					parts.setText("• " + ingPart + " parts ");
 				} else {
 					parts.setText("• ");
 				}
-				
+
 				parts.setTextColor(Color.WHITE);
 				parts.setTextSize(20);
 				parts.setShadowLayer(2, 0, 5, Color.BLACK);
-				
+
 				tr.addView(parts);
 			}
-			
+
 			tr.addView(ingredient);
 
 			ingTable.addView(tr);
@@ -121,18 +127,19 @@ public class RecipeActivity extends Activity {
 
 		updateAnalysis(cocktail);
 
-		//Button tweet = (Button) findViewById(R.id.tweetButton);
-		/*
+		Button tweet = (Button) findViewById(R.id.tweetButton);
 		  tweet.setOnClickListener(new View.OnClickListener() {
 		  
-		  public void onClick(View v) { if
-		  (TwitterUtils.isAuthenticated(prefs)) { sendTweet(); } else { Intent
-		  i = new Intent(getApplicationContext(),
-		  PrepareRequestTokenActivity.class);
-		  i.putExtra("tweet_msg",getTweetMsg()); startActivity(i); }
+		  public void onClick(View v) {
+		  try {
+			sendTweet(token1,token2,v.getContext(), cocktail);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		  
 		  } });
-		*/ 
+		 
 
 		/*
 		 * WebView mCharView = (WebView) findViewById(R.id.webView1); String
@@ -152,37 +159,53 @@ public class RecipeActivity extends Activity {
 		herbalness.setProgress((int) (demoCocktail.getHerbalness(this) * 10));
 	}
 
-	/*
-	 * public void sendTweet() { Thread t = new Thread() { public void run() {
-	 * 
-	 * try { TwitterUtils.sendTweet(prefs,getTweetMsg());
-	 * mTwitterHandler.post(mUpdateTwitterNotification); } catch (Exception ex)
-	 * { ex.printStackTrace(); } }
-	 * 
-	 * }; t.start(); }
-	 */
-	private String getTweetMsg() {
-		return "Tweeting from Android App at " + new Date().toLocaleString();
+	public static void sendTweet(String token1, String token2, Context c, Cocktail coktail) throws Exception {
+		String msg = getTweetMsg(cocktail);
+		AccessToken a = new AccessToken(token1, token2);
+		Twitter twitter = new TwitterFactory().getInstance();
+		twitter.setOAuthConsumer(Constants.CONSUMER_KEY,
+				Constants.CONSUMER_SECRET);
+		twitter.setOAuthAccessToken(a);
+		Toast.makeText(c, "Tweeted!", Toast.LENGTH_LONG).show();
+		twitter.updateStatus(msg);
+	}
+
+	private static String getTweetMsg(Cocktail cocktail) {
+		String msg = "Enjoying ";
+		if(cocktail.isCustom()) {
+			msg+="a cocktail of my own design: ";
+			for(String s: cocktail.getIngredients().keySet()){
+				msg += s + ", ";
+			}
+		} else {
+			String name = cocktail.getName();
+			name = name.replaceAll(" ", "");
+			msg+="a #" + name + " ";
+		}
+		msg+= "thanks to #moonshine!";
+		return msg;
 	}
 
 	public class PartUpdateListener implements OnItemSelectedListener {
 		String ingredient;
+
 		public PartUpdateListener(String ingredient) {
-			this.ingredient=ingredient;
+			this.ingredient = ingredient;
 		}
-		
+
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
 				long id) {
-			
-			int newPart = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+
+			int newPart = Integer.parseInt(parent.getItemAtPosition(pos)
+					.toString());
 			cocktail.updatePart(ingredient, newPart);
-			
+
 			updateAnalysis(cocktail);
-			
-			Toast.makeText(
-					parent.getContext(),
+
+			/*Toast.makeText(parent.getContext(),
 					parent.getItemAtPosition(pos).toString(),
 					Toast.LENGTH_SHORT).show();
+					*/
 		}
 
 		public void onNothingSelected(AdapterView parent) {
