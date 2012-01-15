@@ -41,7 +41,7 @@ public class ShelfActivity extends Activity implements SensorListener {
     private long lastUpdate = -1;
     private float x, y, z;
     private float last_x, last_y, last_z;
-    private static final int SHAKE_THRESHOLD = 2000;
+    private static int SHAKE_THRESHOLD = 2000;
     Vibrator v;
 	//Shake Stuff
 		
@@ -56,11 +56,18 @@ public class ShelfActivity extends Activity implements SensorListener {
 	private HashSet<String> drinkPicks;
 	public DataStore ds;
 	private Animation hyperspaceJump;
-	private Intent i;
+	//private Intent i;
+	
+	public void onResume() {
+		super.onResume();
+		boolean accelSupported = sensorMgr.registerListener(this,
+				SensorManager.SENSOR_ACCELEROMETER,
+				SensorManager.SENSOR_DELAY_GAME);
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.shelf);
 		
 		//Vibrator
@@ -101,7 +108,7 @@ public class ShelfActivity extends Activity implements SensorListener {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				setItemId(position);
-				gridView.setAdapter(mAdapter);
+				//gridView.setAdapter(mAdapter);
 	
 				//CHANGE FOR REMOVING LATER
 				drinkPicks.add(listName.get(position));
@@ -150,7 +157,7 @@ public class ShelfActivity extends Activity implements SensorListener {
 	}
 
 	public void shakerStart() {
-		i = new Intent(this, ResultActivity.class);
+		//i = new Intent(this, ResultActivity.class);
 		
 		shaker = (ImageView) findViewById(R.id.shaker);
 		shaker.setClickable(true);
@@ -226,10 +233,13 @@ public class ShelfActivity extends Activity implements SensorListener {
 		
 		// Log.d("sensor", "diff: " + diffTime + " - speed: " + speed);
 		if (speed > SHAKE_THRESHOLD) {
+			sensorMgr.unregisterListener(this);
 			//Log.d("sensor", "shake detected w/ speed: " + speed);
 		    //Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
 			Intent i = new Intent(this, ResultActivity.class);
 			v.vibrate(1000);
+			
+			i.putExtra("ingredients", drinkPicks);
 			startActivity(i);
 		}
 		last_x = x;
