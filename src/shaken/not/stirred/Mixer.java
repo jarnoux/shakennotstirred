@@ -7,7 +7,7 @@ public class Mixer extends Ingredient {
 		return sourness;
 	}
 
-	public Mixer(String name, int sweetness, int herbalness, int sourness, String imageID) {
+	public Mixer(String name, int sweetness, int herbalness, int sourness, int imageID) {
 		super(name, sweetness, herbalness, sourness, imageID);
 	}
 }
