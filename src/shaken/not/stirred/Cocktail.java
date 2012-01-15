@@ -72,31 +72,37 @@ public class Cocktail implements Serializable{
 	
 	public float getSweetness(Activity a) {
 		int totalSweetness = 0;
+		int totalParts = 0;
 		
 		for(String s: ingredients.keySet()) {
-			totalSweetness += DataStore.getInstance(a).getIngredients().get(s).getSweetness();
+			totalSweetness += (DataStore.getInstance(a).getIngredients().get(s).getSweetness()*ingredients.get(s));
+			totalParts += ingredients.get(s);
 		}
 		
-		return ((float)totalSweetness/(float) numIngredients);
+		return ((float)totalSweetness/(float) totalParts);
 	}
 	
 	public float getSourness(Activity a) {
 		int totalSourness = 0;
+		int totalParts = 0;
 		
 		for(String s: ingredients.keySet()) {
-			totalSourness += DataStore.getInstance(a).getIngredients().get(s).getSourness();
+			totalSourness += (DataStore.getInstance(a).getIngredients().get(s).getSourness()*ingredients.get(s));
+			totalParts += ingredients.get(s);
 		}
 		
-		return ((float)totalSourness/(float) numIngredients);
+		return ((float)totalSourness/(float) totalParts);
 	}
 	
 	public float getHerbalness(Activity a) {
 		int totalHerbalness = 0;
+		int totalParts = 0;
 		
 		for(String s: ingredients.keySet()) {
 			totalHerbalness += DataStore.getInstance(a).getIngredients().get(s).getHerbalness();
+			totalParts += ingredients.get(s);
 		}
 		
-		return ((float)totalHerbalness/(float) numIngredients);
+		return ((float)totalHerbalness/(float) totalParts);
 	}	
 }

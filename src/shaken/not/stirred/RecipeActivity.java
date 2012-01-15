@@ -39,9 +39,10 @@ public class RecipeActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
-		ingredients.put("Gin", 4);
-		ingredients.put("Lime Juice", 1);
-		ingredients.put("Simple Syrup", 1);
+		ingredients.put("gin", 1);
+		ingredients.put("coke", 4);
+		//ingredients.put("Lime Juice", 1);
+		//ingredients.put("Simple Syrup", 1);
 		Cocktail cocktail = new Cocktail("Gimlet", ingredients, true, 1);
 		
 		//Cocktail cocktail = null;
