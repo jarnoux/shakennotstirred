@@ -8,10 +8,16 @@ import java.util.Map;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ResultActivity extends Activity {
@@ -28,6 +34,24 @@ public class ResultActivity extends Activity {
 		ListView suggestionListView = (ListView) findViewById(R.id.suggestionsListView);
 		
 		suggestionListView.setAdapter(new ArrayAdapter<Suggestion>(this, R.layout.suggestion_item, suggestedCocktails));
+		final Activity self = this;
+		suggestionListView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView parent, View v, int position, long id) {
+				Intent i = new Intent(self, RecipeActivity.class);
+				i.putExtra("cocktail", DataStore.getInstance(self).getRecipes().get(suggestedCocktails.get(position).getName()));
+				startActivity(i);
+			}
+		});
+		
+		((RelativeLayout) findViewById(R.id.resultHeaderView)).setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				Intent i = new Intent(self, RecipeActivity.class);
+				i.putExtra("cocktail", DataStore.getInstance(self).getRecipes().get(createdCocktail.getName()));
+				startActivity(i);
+			}
+		});
 
 	}
 	
@@ -49,6 +73,7 @@ public class ResultActivity extends Activity {
 		List<String> relatedCocktails = new ArrayList<String>();
 		
 		createdCocktail = null;
+		suggestedCocktails.clear();
 		
 		for(Cocktail nextCocktail : DataStore.getInstance(this).getRecipes().values()){
 			boolean subset = false;
@@ -67,7 +92,7 @@ public class ResultActivity extends Activity {
 		
 		if(createdCocktail == null){
 			// you made that up, didn't you...
-			createdCocktail = new Cocktail("<new cocktail>", quantities, true, R.drawable.cocktail_2);
+			createdCocktail = new Cocktail("Unknown Cocktail", quantities, true, R.drawable.cocktail_2);
 		} 
 
 		if(!relatedCocktails.isEmpty()){
