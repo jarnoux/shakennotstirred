@@ -133,17 +133,17 @@ Lime Juice,0,1,Cocktail
 Lemon Drop,1,,Cocktail
 Vodka,0,4,Cocktail
 Triple Sec,0,1,Cocktail
-Sweet & Sour,0,1,Cocktail
+Sweet and Sour,0,1,Cocktail
 Sugar Rim,0,-1,Cocktail
 Lemon Twist,0,-1,Cocktail
 Purple Hooter,1,,Cocktail
 Vodka,0,4,Cocktail
 Chambord,0,1,Cocktail
-Sweet & Sour,0,1,Cocktail
+Sweet and Sour,0,1,Cocktail
 Sidecar,1,,Cocktail
 Brandy,0,4,Cocktail
 Triple Sec,0,1,Cocktail
-Sweet & Sour,0,1,Cocktail
+Sweet and Sour,0,1,Cocktail
 Sugar Rim,0,-1,Cocktail
 Lemon Twist,0,-1,Cocktail
 Vodka Gimlet,1,,Cocktail
@@ -152,11 +152,11 @@ Lime Juice,0,1,Cocktail
 Lime Wedge,0,-1,Cocktail
 Whiskey Sour,1,,Cocktail
 Bourbon,0,1,Cocktail
-Sweet & Sour,0,2,Cocktail
+Sweet and Sour,0,2,Cocktail
 Cherry,0,-1,Cocktail
 Amaretto Sour,1,,Cocktail
  Amaretto,0,1,Cocktail
-Sweet & Sour,0,2,Cocktail
+Sweet and Sour,0,2,Cocktail
 Cherry,0,-1,Cocktail
 Long Island Iced Tea,1,,Cocktail
 Vodka,0,1,Cocktail
@@ -164,7 +164,7 @@ Gin,0,1,Cocktail
 Rum,0,1,Cocktail
 Tequila,0,1,Cocktail
 Triple Sec,0,1,Cocktail
-Sweet & Sour,0,2,Cocktail
+Sweet and Sour,0,2,Cocktail
 Coke,0,1,Cocktail
 Lemon,0,-1,Cocktail
 Electric Iced Tea,1,,Cocktail
@@ -173,28 +173,28 @@ Gin,0,1,Cocktail
 Rum,0,1,Cocktail
 Tequila,0,1,Cocktail
 Blue Curacao,0,1,Cocktail
-Sweet & Sour,0,2,Cocktail
+Sweet and Sour,0,2,Cocktail
 7Up,0,1,Cocktail
 Lemon,0,-1,Cocktail
 Gin Fizz,1,,Highball
 Gin,0,1,Highball
-Sweet & Sour,0,2,Highball
+Sweet and Sour,0,2,Highball
 Club Soda,0,1,Highball
 Cherry,0,-1,Highball
 Sloe Gin Fizz,1,,Highball
 Sloe Gin,0,1,Highball
-Sweet & Sour,0,2,Highball
+Sweet and Sour,0,2,Highball
 Club Soda,0,1,Highball
 Cherry,0,-1,Highball
 Bacardi Cocktail,1,,Cocktail
 Rum,0,2,Cocktail
 Grenadine,0,1,Cocktail
-Sweet & Sour,0,3,Cocktail
+Sweet and Sour,0,3,Cocktail
 Cherry,0,-1,Cocktail
 Mai Tai,1,,Highball
 Light Rum,0,2,Highball
 Dark Rum,0,1,Highball
-Sweet & Sour,0,2,Highball
+Sweet and Sour,0,2,Highball
 Pineapple Juice,0,1,Highball
 Orange Juice,0,1,Highball
 Grenadine,0,1,Highball
@@ -206,12 +206,12 @@ Dark Rum,0,2,Zombie
 Creme de Almond,0,1,Zombie
 Triple Sec,0,1,Zombie
 Orange Juice,0,2,Zombie
-Sweet & Sour,0,2,Zombie
+Sweet and Sour,0,2,Zombie
 Alabama Slammer,1,,Collins
 Amaretto,0,1,Collins
 Sloe Gin,0,1,Collins
 Bourbon,0,1,Collins
-Sweet & Sour,0,,Collins
+Sweet and Sour,0,,Collins
 Orange Juice,0,1,Collins
 Freddy Fudpucker,1,,Collins
 Tequila,0,2,Collins
@@ -297,21 +297,21 @@ Blue Margarita,1,,Cocktail
 Salt Rim,0,-1,Cocktail
 Tequila,0,2,Cocktail
 Blue Curacao,0,1,Cocktail
-Sweet & Sour,0,3,Cocktail
+Sweet and Sour,0,3,Cocktail
 Lime,0,-1,Cocktail
 Daiquiri,1,,Cocktail
 Light Rum,0,1,Cocktail
-Sweet & Sour,0,2,Cocktail
+Sweet and Sour,0,2,Cocktail
 Fresh Fruit Daiquiri,1,,Cocktail
  Light Rum,0,1,Cocktail
-Sweet & Sour,0,2,Cocktail
+Sweet and Sour,0,2,Cocktail
  Cup Fruit Of Choice,0,-1,Cocktail
 Garnish With Fruit Used,0,-1,Cocktail
 Margarita,1,,Cocktail
 Salt Glass Rim,0,-1,Cocktail
  Tequila,0,2,Cocktail
  Triple Sec,0,1,Cocktail
-1 1/2 Sweet & Sour,0,3,Cocktail
+1 1/2 Sweet and Sour,0,3,Cocktail
 Lime,0,-1,Cocktail
 Bailey's Coffee,1,,Coffee
  Bailey,0,1,Coffee
@@ -402,7 +402,7 @@ Sambuca,0,2,Shot
 Jolly Rancher,1,,Rock
  Apple Schnapps,0,2,Rock
  Triple Sec,0,2,Rock
- Sweet & Sour,0,2,Rock
+ Sweet and Sour,0,2,Rock
 7Up,0,1,Rock
 Mind Eraser,1,,Rock
  Vodka,0,3,Rock
