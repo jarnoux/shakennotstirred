@@ -116,9 +116,9 @@ public class DataStore{
 				
 				Ingredient ingredient;
 				if(alcohol == 0){
-					ingredient = new Mixer(name, sweetness, herbalness, sourness, imageID);
+					ingredient = new Mixer(name, sweetness, herbalness, sourness, Ingredient.IngredientType.valueOf(imageID).imageId);
 				} else {
-					ingredient = new Alcohol(name, sweetness, herbalness, alcohol, imageID);
+					ingredient = new Alcohol(name, sweetness, herbalness, alcohol, Ingredient.IngredientType.valueOf(imageID).imageId);
 				}
 				this.ingredients.put(name, ingredient);
 			}
