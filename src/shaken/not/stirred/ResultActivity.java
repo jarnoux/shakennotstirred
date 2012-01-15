@@ -51,7 +51,10 @@ public class ResultActivity extends Activity {
 			}
 			boolean subset = false;
 			for(String nextIngredient : givenIngredients){
-				
+				if(DataStore.getInstance(this).getRecipes().get(nextCocktail).getIngredients().keySet().contains(nextIngredient)){
+					subsetCocktails.add(nextCocktail.getName());
+					break;
+				}
 			}
 			
 		}
