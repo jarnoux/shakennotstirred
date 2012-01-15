@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import android.app.Activity;
 import android.content.Context;
@@ -56,11 +57,11 @@ public class ShelfActivity extends Activity {
 		drinkPicks = new HashSet<String>();
 		prepareList();
 		
+		
 		Spinner spinner = (Spinner) findViewById(R.id.spinner);
 		adapter = ArrayAdapter.createFromResource(this, R.array.planets_array,
 				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
@@ -118,27 +119,27 @@ public class ShelfActivity extends Activity {
 			if ("All flavors".equals(choice)) {
 				Toast.makeText(parent.getContext(), "Showing all flavors",
 						Toast.LENGTH_LONG).show();
+//				prepareList();
 			} else {
 				Toast.makeText(parent.getContext(),
 						"Showing only " + choice.toLowerCase() + " flavors",
 						Toast.LENGTH_LONG).show();
-				/*
+				
 				 if("Alcoholic".equals(choice)) { ingList =
-				 ds.getIngredientsSortedByAlcohol(); }*/
+				 ds.getIngredientsSortedByAlcohol(); }
 			}
 
-			/*
-			listName = new ArrayList<String>(); 
-			listIcon = new ArrayList<Integer>();
-			  
-			for (int i = 0; i < ingList.size(); i++) {
-				listName.add(ingList.get(i).getName());
-				listIcon.add(ingList.get(i).getImageID()); 
-			}
-			  
-			gridView.setAdapter(mAdapter);
-			*/
-
+//			
+//			listName = new ArrayList<String>(); 
+//			listIcon = new ArrayList<Integer>();
+//			  
+//			for (int i = 0; i < ingList.size(); i++) {
+//				listName.add(ingList.get(i).getName());
+//				listIcon.add(ingList.get(i).getImageID()); 
+//			}
+//			  
+//			gridView.setAdapter(mAdapter);
+			
 		}
 
 		public void onNothingSelected(AdapterView parent) {
@@ -151,13 +152,11 @@ public class ShelfActivity extends Activity {
 		listIcon = new ArrayList<Integer>();
 		
 		Map<String, Ingredient> ingMap =  ds.getIngredients();
-		Iterator<String> keyIterator = ingMap.keySet().iterator();
+		TreeSet<String> keys = new TreeSet<String>(ingMap.keySet());
 		
-		while (keyIterator.hasNext()) {
-			String name = keyIterator.next();
-			
-			listName.add(name);
-			listIcon.add(ingMap.get(name).getImageID());
+		for (String key : keys) {
+			listName.add(key);
+			listIcon.add(ingMap.get(key).getImageID());
 		}
 	}
 
