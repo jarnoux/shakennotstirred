@@ -139,10 +139,10 @@
         </TableRow>
     </TableLayout>
 
-        <Button
+       <!--  <Button
             android:id="@+id/tweetButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Tweet" />
+            android:text="@string/Tweet" /> -->
 
 </LinearLayout>

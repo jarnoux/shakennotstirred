@@ -121,7 +121,7 @@ public class RecipeActivity extends Activity {
 
 		updateAnalysis(cocktail);
 
-		Button tweet = (Button) findViewById(R.id.tweetButton);
+		//Button tweet = (Button) findViewById(R.id.tweetButton);
 		/*
 		  tweet.setOnClickListener(new View.OnClickListener() {
 		  

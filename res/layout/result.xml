@@ -46,7 +46,9 @@
         android:shadowDy="2"
         android:shadowRadius="2"
         android:text="@string/suggestionText"
-        android:textSize="16px" />
+        android:textSize="16px"
+        android:textColor="#000000"
+         />
 
     <ListView
         android:id="@+id/suggestionsListView"
@@ -55,7 +57,8 @@
         android:layout_weight="3.08"
         android:paddingLeft="20px"
         android:paddingRight="20px"
-        android:listSelector="#000">
+        android:cacheColorHint="#00000000"
+        >
     </ListView>
 
 </LinearLayout>

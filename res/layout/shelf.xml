@@ -4,24 +4,24 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shelf_bg_new"
         >
-
+
    	<LinearLayout
    	    android:layout_width="fill_parent"
-   	    android:layout_height="wrap_content"
+   	    android:layout_height="361dp"
    	    android:orientation="vertical"
    	    android:padding="10dip" >
 
-   	    <Spinner
+   	  <!--  <Spinner
    	        android:id="@+id/spinner"
    	        android:layout_width="fill_parent"
    	        android:layout_height="wrap_content"
-   	        android:prompt="@string/planet_prompt" />
-
+   	        android:prompt="@string/planet_prompt" />-->
+
    	    <GridView
    	        android:id="@+id/gridview"
    	        android:layout_width="fill_parent"
    	        android:layout_height="300dp"
-   	        android:layout_weight="1.24"
+   	        android:layout_weight="2.95"
    	        android:columnWidth="80dp"
    	        android:gravity="center"
    	        android:horizontalSpacing="10dp"
@@ -29,6 +29,7 @@
    	        android:scrollbarFadeDuration="0"
    	        android:stretchMode="columnWidth"
    	        android:verticalSpacing="5dp" >
+
    	    </GridView>
    	</LinearLayout>
 
@@ -37,23 +38,61 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content" 
 	    android:layout_gravity="bottom">
-
-	    <LinearLayout 
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content">
-	    
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent" >
+	    
 		    <ImageView
 		        android:id="@+id/shaker"
 		        android:layout_width="wrap_content"
 		        android:layout_height="fill_parent"
 		        android:layout_gravity="left"
-		        android:src="@drawable/shaker_open"
+		        android:paddingBottom="10dp"
+		        android:paddingLeft="50dp"
+		        android:paddingRight="50dp"
 		        android:paddingTop="20dp"
-		        android:paddingLeft="20dp" 
-		        android:paddingRight="20dp" 
-		        android:paddingBottom="10dp"/>
+		        android:src="@drawable/shaker_open" />
+	    </LinearLayout>
+	    <LinearLayout 
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="fill_parent"
+	    	android:orientation="vertical"
+	    	android:layout_weight="0.8">
+
+	        <TextView
+	            android:id="@+id/textViewz1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="+"
+	            android:textAppearance="?android:attr/textAppearanceMedium" 
+	            android:paddingTop="5dp"
+	            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+	            />
+
+	        <TextView
+	            android:id="@+id/textViewz2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="+"
+	            android:paddingBottom="5dp"
+	            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:textColor="#ffffff"
+	            />
+
+	        <TextView
+	            android:id="@+id/textViewz3"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:paddingBottom="5dp"
+	            android:text="+"
+	            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:textColor="#ffffff"
+	            />
+		    	
+		    </LinearLayout>
 	    
-	    </LinearLayout> 
 	</LinearLayout>
 	
 

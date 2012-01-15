@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
@@ -27,10 +28,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -52,22 +55,53 @@ public class ShelfActivity extends Activity implements SensorListener {
 	private GridView gridView;
 	private ImageView shaker;
 	private boolean shakerOpen;
-
+	private boolean clearFlag;
+	
 	private HashSet<String> drinkPicks;
 	public DataStore ds;
 	private Animation hyperspaceJump;
 	//private Intent i;
+	
+	public void onPause() {
+		super.onPause();
+		clearFlag = true;
+	}
 	
 	public void onResume() {
 		super.onResume();
 		boolean accelSupported = sensorMgr.registerListener(this,
 				SensorManager.SENSOR_ACCELEROMETER,
 				SensorManager.SENSOR_DELAY_GAME);
-	}
+		
+		if (clearFlag) {
+			drinkPicks = new HashSet<String>();
+			TextView tv;
+			tv = (TextView) findViewById(R.id.textViewz1);
+			tv.setText("+");
 
+			tv = (TextView) findViewById(R.id.textViewz2);
+			tv.setText("+ ");
+
+			tv = (TextView) findViewById(R.id.textViewz3);
+			tv.setText("+ ");
+
+			clearFlag = false;
+		}
+	}
+	
+//	public class DownloadImageTask extends AsyncTask<Void, Void, String> {
+//	     protected String doInBackground(Void... values) {
+//	    	 prepareList();
+//	         return null;
+//	     }
+//
+//	     protected void onPostExecute(String result) {
+//	 		gridView.setAdapter(mAdapter);
+//	     }
+//	 }
+//	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.shelf);
 		
 		//Vibrator
@@ -91,7 +125,7 @@ public class ShelfActivity extends Activity implements SensorListener {
 		drinkPicks = new HashSet<String>();
 		
 		prepareList();
-		spinnerStart();
+		//spinnerStart();
 		shakerStart();
 		
 		hyperspaceJump = AnimationUtils.loadAnimation(this,
@@ -108,14 +142,52 @@ public class ShelfActivity extends Activity implements SensorListener {
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				setItemId(position);
-				gridView.setAdapter(mAdapter);
-	
-				//CHANGE FOR REMOVING LATER
-				drinkPicks.add(listName.get(position));
+//				setItemId(position);
+				int drinkCount = drinkPicks.size();
+				
+				if (drinkCount < 3) {
+					shaker.startAnimation(hyperspaceJump);
+					String name = listName.get(position);
+					
+					gridView.setAdapter(mAdapter);
+					drinkPicks.add(name);
+					TextView tv = null;
+					switch (drinkCount) {
+					case 0:
+						tv = (TextView) findViewById(R.id.textViewz1);
+						break;
+					case 1:
+						tv = (TextView) findViewById(R.id.textViewz2);
+						break;
+					case 2:
+						tv = (TextView) findViewById(R.id.textViewz3);
+						break;
+					}
+					
+					tv.setText("+ " + name);
+				}
 			}
 		});
 
+//		Button butt1 = (Button) findViewById (R.id.button1);
+//		butt1.setOnClickListener(new OnClickListener() {
+//
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				  new Thread(new Runnable() {
+//					    public void run() {
+//					      prepareList();
+//					      gridView.post(new Runnable() {
+//					        public void run() {
+//					        	gridView.setAdapter(mAdapter);
+//					        }
+//					      });
+//					    }
+//					  }).start();
+//
+//			}
+//			
+//		});
 	}
 	
 	public class MyOnItemSelectedListener implements OnItemSelectedListener {
@@ -135,8 +207,8 @@ public class ShelfActivity extends Activity implements SensorListener {
 						"Showing only " + choice.toLowerCase() + " flavors",
 						Toast.LENGTH_LONG).show();
 				
-				 if("Alcoholic".equals(choice)) { ingList =
-				 ds.getIngredientsSortedByAlcohol(); }
+				 if("Alcoholic".equals(choice)) { 
+					 ingList = ds.getIngredientsSortedByAlcohol(); }
 			}
 
 //			
@@ -163,32 +235,27 @@ public class ShelfActivity extends Activity implements SensorListener {
 		shaker = (ImageView) findViewById(R.id.shaker);
 		shaker.setClickable(true);
 
-		// Implement On click listener
-		shaker.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				if(shakerOpen) { 
-					shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_closed));
-					shakerOpen = true;
-				} else {
-					shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_open));
-					shakerOpen = false;
-				}
-				
-				shaker.invalidate();
-//				i.putExtra("ingredients", drinkPicks);
-//				startActivity(i);
-			}
-		});
+//		// Implement On click listener
+//		shaker.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_closed));
+//				shakerOpen = true;
+//				
+////				i.putExtra("ingredients", drinkPicks);
+////				startActivity(i);
+//			}
+//		});
 	}
 	
-	public void spinnerStart() {
-		Spinner spinner = (Spinner) findViewById(R.id.spinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.planets_array,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
-	}
+//	
+//	public void spinnerStart() {
+//		Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//		adapter = ArrayAdapter.createFromResource(this, R.array.planets_array,
+//				android.R.layout.simple_spinner_item);
+//		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		spinner.setAdapter(adapter);
+//		spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+//	}
 	
 	public void prepareList() {
 		listName = new ArrayList<String>();
@@ -203,15 +270,15 @@ public class ShelfActivity extends Activity implements SensorListener {
 		}
 	}
 
-	public boolean setItemId(int position) {
-		if (listIcon.get(position) != R.drawable.silhouette) {
-			Log.d("BLAH", String.valueOf(position));
-			listIcon.set(position, R.drawable.silhouette);
-			return true;
-		}
-
-		return false;
-	}
+//	public boolean setItemId(int position) {
+//		if (listIcon.get(position) != R.drawable.silhouette) {
+//			Log.d("BLAH", String.valueOf(position));
+//			listIcon.set(position, R.drawable.silhouette);
+//			return true;
+//		}
+//
+//		return false;
+//	}
 
 	public void onAccuracyChanged(int sensor, int accuracy) {
 		// TODO Auto-generated method stub
