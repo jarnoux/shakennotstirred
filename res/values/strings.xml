@@ -4,5 +4,24 @@
     <string name="hello">Salut Jacques!!</string>
     <string name="app_name">MoonShine</string>
     <string name="suggestionText">More Suggestions...</string>
+    
+     <string name="Recipe">Recipe</string>
+    <string name="Analysis">Analysis</string>
+    <string name="Sweet">Sweet</string>
+    <string name="Sour">Sour</string>
+    <string name="Heavy">Heavy</string>
+    <string name="Herbal">Herbal</string>
+    <string name="Tweet">Tweet!</string>
+    <string-array name="intsOneToTen">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
 
 </resources>
