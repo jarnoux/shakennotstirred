@@ -20,6 +20,7 @@ public class Ingredient implements Serializable{
 		this.herbalness = herbalness;
 		this.sourness = sourness;
 		this.imageID = imageID;
+
 	}
 	public String getName() {
 		return name;

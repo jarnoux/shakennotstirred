@@ -64,11 +64,11 @@ public class ResultActivity extends Activity {
 		super.onStart();
 		
 		Bundle extras = getIntent().getExtras();
-//		Set<String> givenIngredients = (Set<String>) extras.get("ingredients");
+		Set<String> givenIngredients = (Set<String>) extras.get("ingredients");
 		//TODO be called by the first activity
-		Set<String> givenIngredients = new HashSet<String>();
+		/*Set<String> givenIngredients = new HashSet<String>();
 		givenIngredients.add("rum");
-		//givenIngredients.add("coke");
+		givenIngredients.add("coke");*/
 		
 		Map<String, Integer> quantities = new HashMap<String, Integer>();
 		for(String givenIngredient : givenIngredients){

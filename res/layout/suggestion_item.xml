@@ -21,7 +21,9 @@
 	    android:layout_centerVertical="true"
 	    android:layout_toRightOf="@+id/cocktailIcon"
 	    android:padding="10dp"
-	    android:text="Sample Cocktail"
+	    android:text="Sample Cocktaillllllllllllllllllllllllll"
+	    android:maxLines="2"
+	    android:maxWidth="200px"
 	    android:textColor="#EEE"
         android:shadowColor="#222"
         android:shadowDx="0"
@@ -32,11 +34,13 @@
 	<TextView
 	    android:id="@+id/cocktailAdditions"
 	    android:layout_width="wrap_content"
+	    android:maxLines="2"
+	    android:maxWidth="200px"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
 	    android:layout_centerVertical="true"
 	    android:layout_marginRight="14dp"
-	    android:text="(+ blah blah)"
+	    android:text="(+ blah blah) (+ blaaaaaaaaaah blah blah) (- blah blaaaaaaaaaaah)"
 	    android:textColor="#AAA"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
 
