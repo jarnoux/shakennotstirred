@@ -23,8 +23,8 @@ public class Suggestion extends Cocktail {
 		this.original = original;
 	}
 	
-	public String toString(){
-		StringBuilder builder = new StringBuilder(this.getName());
+	public String getAdditions(){
+		StringBuilder builder = new StringBuilder();
 		
 		Set<String> superset = new HashSet<String>(this.getIngredients().keySet());
 		superset.removeAll(this.original.getIngredients().keySet());
