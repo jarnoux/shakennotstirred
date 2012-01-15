@@ -24,4 +24,13 @@
         <item>9</item>
     </string-array>
 
+    <string name="planet_prompt">Filter by flavor:</string>
+    <string-array name="planets_array">
+        <item>All flavors</item>
+        <item>Alcoholic</item>
+        <item>Herbal</item>
+        <item>Sour</item>
+        <item>Sweet</item>
+    </string-array>
+    
 </resources>

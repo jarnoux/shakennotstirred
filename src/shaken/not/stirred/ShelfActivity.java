@@ -12,9 +12,13 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
  
@@ -22,11 +26,11 @@ public class ShelfActivity extends Activity
 {  	
     private ArrayList<String> listName;  
     private ArrayList<Integer> listIcon; 
-    private GridviewAdapter mAdapter;  
+    private GridviewAdapter mAdapter;
+    private ArrayAdapter<CharSequence> adapter;
     private GridView gridView;  
     private ImageView shaker;	
 	
-    
     Animation hyperspaceJump;
     private Animation anim;
     
@@ -34,6 +38,13 @@ public class ShelfActivity extends Activity
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE); 
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.shelf);
+	    
+	    Spinner spinner = (Spinner) findViewById(R.id.spinner);
+	    adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, android.R.layout.simple_spinner_item);
+	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    
+	    spinner.setAdapter(adapter);
+	    spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 	    
         prepareList();  
 	    
@@ -59,6 +70,24 @@ public class ShelfActivity extends Activity
 	        }
 	    });
 
+	}
+	
+	public class MyOnItemSelectedListener implements OnItemSelectedListener {
+
+	    public void onItemSelected(AdapterView<?> parent,
+	        View view, int pos, long id) {
+	    	if ("All flavors".equals(parent.getItemAtPosition(pos).toString())) {
+	    		Toast.makeText(parent.getContext(), "Showing all flavors", Toast.LENGTH_LONG).show();
+	    	} else {
+	    		Toast.makeText(parent.getContext(), "Showing only " +
+	    				parent.getItemAtPosition(pos).toString().toLowerCase() + " flavors", Toast.LENGTH_LONG).show();
+	    	}
+	    	
+	    }
+
+	    public void onNothingSelected(AdapterView parent) {
+	      // Do nothing.
+	    }
 	}
 	
     public void prepareList()  
