@@ -105,8 +105,6 @@ public class RecipeActivity extends Activity {
 		
 		updateAnalysis(cocktail);
 		
-		DataStore.getInstance(this).getIngredients().get("rum").ge
-		
 		 Button tweet = (Button) findViewById(R.id.tweetButton);
 		 /*
 		 tweet.setOnClickListener(new View.OnClickListener() {
@@ -135,16 +133,13 @@ public class RecipeActivity extends Activity {
 	
 	public void updateAnalysis(Cocktail demoCocktail) {
 		ProgressBar sweetness = (ProgressBar) findViewById(R.id.sweetnessProgress);
-		sweetness.setProgress((int) (demoCocktail.getSweetness() * 10));
+		sweetness.setProgress((int) (demoCocktail.getSweetness(this) * 10));
 		
 		ProgressBar sourness = (ProgressBar) findViewById(R.id.sournessProgress);
-		sourness.setProgress((int) (demoCocktail.getSourness() * 10));
-		
-		ProgressBar heaviness = (ProgressBar) findViewById(R.id.heavinessProgress);
-		heaviness.setProgress((int) (demoCocktail.getHeaviness() * 10));
+		sourness.setProgress((int) (demoCocktail.getSourness(this) * 10));
 		
 		ProgressBar herbalness = (ProgressBar) findViewById(R.id.herbalnessProgress);
-		herbalness.setProgress((int) (demoCocktail.getHerbalness() * 10));
+		herbalness.setProgress((int) (demoCocktail.getHerbalness(this) * 10));
 	}
 	/*
 	public void sendTweet() {

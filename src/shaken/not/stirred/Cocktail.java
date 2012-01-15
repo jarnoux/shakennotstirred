@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.app.Activity;
+
 public class Cocktail implements Serializable{
 
 	// Key is ingredient, value is quantity in an integer ratio
@@ -68,44 +70,33 @@ public class Cocktail implements Serializable{
 		int imageId;
 	}
 	
-	public float getSweetness() {
+	public float getSweetness(Activity a) {
 		int totalSweetness = 0;
 		
 		for(String s: ingredients.keySet()) {
-			totalSweetness += 3; //dataStore.getIngredient(s).getSweetness();
+			totalSweetness += DataStore.getInstance(a).getIngredients().get(s).getSweetness();
 		}
 		
 		return ((float)totalSweetness/(float) numIngredients);
 	}
 	
-	public float getSourness() {
+	public float getSourness(Activity a) {
 		int totalSourness = 0;
 		
 		for(String s: ingredients.keySet()) {
-			totalSourness += 1; //dataStore.getIngredient(s).getSourness();
+			totalSourness += DataStore.getInstance(a).getIngredients().get(s).getSourness();
 		}
 		
 		return ((float)totalSourness/(float) numIngredients);
 	}
 	
-	public float getHerbalness() {
+	public float getHerbalness(Activity a) {
 		int totalHerbalness = 0;
 		
 		for(String s: ingredients.keySet()) {
-			totalHerbalness += 5; //dataStore.getIngredient(s).getSweetness();
+			totalHerbalness += DataStore.getInstance(a).getIngredients().get(s).getHerbalness();
 		}
 		
 		return ((float)totalHerbalness/(float) numIngredients);
-	}
-	
-	public float getHeaviness() {
-		int totalHeaviness = 0;
-		
-		for(String s: ingredients.keySet()) {
-			totalHeaviness += 0; //dataStore.getIngredient(s).getSweetness();
-		}
-		
-		return ((float)totalHeaviness/(float) numIngredients);
-	}
-	
+	}	
 }
