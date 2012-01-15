@@ -43,15 +43,6 @@ public class RecipeActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
-		HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
-		ingredients.put("gin", 1);
-		ingredients.put("coke", 4);
-		// ingredients.put("Lime Juice", 1);
-		// ingredients.put("Simple Syrup", 1);
-		//cocktail = new Cocktail("Gimlet", ingredients, true, 1);
-
-		// Cocktail cocktail = null;
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			cocktail = (Cocktail) extras.getSerializable("cocktail");
@@ -114,7 +105,6 @@ public class RecipeActivity extends Activity {
 				parts.setTextSize(20);
 				parts.setShadowLayer(2, 0, 5, Color.BLACK);
 				
-				
 				tr.addView(parts);
 			}
 			
@@ -133,16 +123,16 @@ public class RecipeActivity extends Activity {
 
 		Button tweet = (Button) findViewById(R.id.tweetButton);
 		/*
-		 * tweet.setOnClickListener(new View.OnClickListener() {
-		 * 
-		 * public void onClick(View v) { if
-		 * (TwitterUtils.isAuthenticated(prefs)) { sendTweet(); } else { Intent
-		 * i = new Intent(getApplicationContext(),
-		 * PrepareRequestTokenActivity.class);
-		 * i.putExtra("tweet_msg",getTweetMsg()); startActivity(i); }
-		 * 
-		 * } });
-		 */
+		  tweet.setOnClickListener(new View.OnClickListener() {
+		  
+		  public void onClick(View v) { if
+		  (TwitterUtils.isAuthenticated(prefs)) { sendTweet(); } else { Intent
+		  i = new Intent(getApplicationContext(),
+		  PrepareRequestTokenActivity.class);
+		  i.putExtra("tweet_msg",getTweetMsg()); startActivity(i); }
+		  
+		  } });
+		*/ 
 
 		/*
 		 * WebView mCharView = (WebView) findViewById(R.id.webView1); String
