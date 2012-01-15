@@ -36,16 +36,17 @@ public class RecipeActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
+/*
 		HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
 		ingredients.put("Gin", 4);
 		ingredients.put("Lime Juice", 1);
 		ingredients.put("Simple Syrup", 1);
-		Cocktail demoCocktail = new Cocktail("Gimlet", ingredients, true, null);
-		
+		Cocktail cocktail = new Cocktail("Gimlet", ingredients, true, 1);
+*/		
+		Cocktail cocktail = null;
 		Bundle extras = getIntent().getExtras();
 		if(extras!=null) {
-			Cocktail cocktail = (Cocktail) extras.getSerializable("cocktail");
+			cocktail = (Cocktail) extras.getSerializable("cocktail");
 		}
 		
 		
@@ -55,7 +56,7 @@ public class RecipeActivity extends Activity {
 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		TextView next = (TextView) findViewById(R.id.textView1);
-		next.setText(demoCocktail.getName());
+		next.setText(cocktail.getName());
 
 		TableLayout ingTable = (TableLayout) findViewById(R.id.tableLayout1);
 		ingTable.removeAllViews();
@@ -64,20 +65,20 @@ public class RecipeActivity extends Activity {
 		String chs = "chd=t:";
 		String chl = "chl=";
 */
-		for (String s : demoCocktail.getIngredients().keySet()) {
+		for (String s : cocktail.getIngredients().keySet()) {
 			TableRow tr = new TableRow(this);
 
 			TextView ingredient = new TextView(this);
 			ingredient.setText(s + "     ");
 			tr.addView(ingredient);
 
-			if (demoCocktail.isCustom()) {
+			if (cocktail.isCustom()) {
 				Spinner spinner = new Spinner(this);
 				ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 			            this, R.array.intsOneToTen, android.R.layout.simple_spinner_item);
 			    adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 			    spinner.setAdapter(adapter);
-				int ing = demoCocktail.getIngredients().get(s);
+				int ing = cocktail.getIngredients().get(s);
 				//parts.setText(ing + " custom parts");
 				spinner.setLayoutParams(new TableRow.LayoutParams(120, 60));
 				
@@ -90,7 +91,7 @@ public class RecipeActivity extends Activity {
 				
 			} else {
 				TextView parts = new TextView(this);
-				int ing = demoCocktail.getIngredients().get(s);
+				int ing = cocktail.getIngredients().get(s);
 				parts.setText(ing + " parts");
 				tr.addView(parts);
 			}
@@ -104,9 +105,10 @@ public class RecipeActivity extends Activity {
 		// chs = chs.substring(0, chs.length()-1);
 		// chl = chl.substring(0, chl.length()-1);
 		
-		updateAnalysis(demoCocktail);
+		updateAnalysis(cocktail);
 		
 		 Button tweet = (Button) findViewById(R.id.tweetButton);
+		 /*
 		 tweet.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -120,6 +122,7 @@ public class RecipeActivity extends Activity {
 				
 			}
 		});
+		*/
 		
 		
 
@@ -143,7 +146,7 @@ public class RecipeActivity extends Activity {
 		ProgressBar herbalness = (ProgressBar) findViewById(R.id.herbalnessProgress);
 		herbalness.setProgress((int) (demoCocktail.getHerbalness() * 10));
 	}
-	
+	/*
 	public void sendTweet() {
 		Thread t = new Thread() {
 	        public void run() {
@@ -159,7 +162,7 @@ public class RecipeActivity extends Activity {
 	    };
 	    t.start();
 	}
-	
+	*/
 	private String getTweetMsg() {
 		return "Tweeting from Android App at " + new Date().toLocaleString();
 	}

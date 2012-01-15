@@ -11,12 +11,14 @@ public class Cocktail implements Serializable{
 	private final String name;
 	private final boolean isCustom;
 	private int imageId;
+	private int numIngredients;
 
 	public Cocktail(String name, Map<String, Integer> ingredients, boolean isCustom, int imageId) {
 		this.name = name;
 		this.setIngredients(ingredients);
 		this.isCustom = isCustom;
 		this.setImage(imageId);
+		numIngredients = ingredients.size();
 		
 	}
 	
@@ -65,4 +67,45 @@ public class Cocktail implements Serializable{
 		
 		int imageId;
 	}
+	
+	public float getSweetness() {
+		int totalSweetness = 0;
+		
+		for(String s: ingredients.keySet()) {
+			totalSweetness += 3; //dataStore.getIngredient(s).getSweetness();
+		}
+		
+		return ((float)totalSweetness/(float) numIngredients);
+	}
+	
+	public float getSourness() {
+		int totalSourness = 0;
+		
+		for(String s: ingredients.keySet()) {
+			totalSourness += 1; //dataStore.getIngredient(s).getSourness();
+		}
+		
+		return ((float)totalSourness/(float) numIngredients);
+	}
+	
+	public float getHerbalness() {
+		int totalHerbalness = 0;
+		
+		for(String s: ingredients.keySet()) {
+			totalHerbalness += 5; //dataStore.getIngredient(s).getSweetness();
+		}
+		
+		return ((float)totalHerbalness/(float) numIngredients);
+	}
+	
+	public float getHeaviness() {
+		int totalHeaviness = 0;
+		
+		for(String s: ingredients.keySet()) {
+			totalHeaviness += 0; //dataStore.getIngredient(s).getSweetness();
+		}
+		
+		return ((float)totalHeaviness/(float) numIngredients);
+	}
+	
 }
