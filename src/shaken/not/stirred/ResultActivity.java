@@ -52,7 +52,7 @@ public class ResultActivity extends Activity {
 			
 			public void onClick(View v) {
 				Intent i = new Intent(self, RecipeActivity.class);
-				i.putExtra("cocktail", DataStore.getInstance(self).getRecipes().get(createdCocktail.getName()));
+				i.putExtra("cocktail", createdCocktail);
 				startActivity(i);
 			}
 		});

@@ -2,12 +2,13 @@ package shaken.not.stirred;
       
     import java.util.ArrayList;  
     import android.app.Activity;  
+import android.view.Gravity;
     import android.view.LayoutInflater;  
     import android.view.View;  
     import android.view.ViewGroup;  
     import android.widget.BaseAdapter;  
     import android.widget.ImageView;  
-    import android.widget.TextView;  
+import android.widget.TextView;  
       
     public class GridviewAdapter extends BaseAdapter  
     {  
@@ -55,6 +56,7 @@ package shaken.not.stirred;
                 convertView = inflator.inflate(R.layout.gridview_row, null);  
       
                 view.txtViewTitle = (TextView) convertView.findViewById(R.id.textView1);  
+                view.txtViewTitle.setGravity(Gravity.CENTER_HORIZONTAL);
                 view.imgViewFlag = (ImageView) convertView.findViewById(R.id.imageView1);  
       
                 convertView.setTag(view);  
