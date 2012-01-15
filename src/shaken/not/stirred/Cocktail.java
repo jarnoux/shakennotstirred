@@ -111,5 +111,14 @@ public class Cocktail implements Serializable{
 			}
 		}
 		return ((float)totalHerbalness/(float) totalParts);
-	}	
+	}
+	
+	public boolean updatePart(String ingredient, int part) {
+		if(ingredients.get(ingredient) != null) {
+			ingredients.put(ingredient, part);
+			return true;
+		}
+		return false;
+
+	}
 }
