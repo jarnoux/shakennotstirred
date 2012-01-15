@@ -7,6 +7,7 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -59,6 +60,9 @@ public class RecipeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.recipe);
 		this.prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		ImageView im = (ImageView) findViewById(R.id.cocktailImage);
+		im.setImageResource(cocktail.getImageId());
 
 		TextView next = (TextView) findViewById(R.id.textView1);
 		next.setText(cocktail.getName());
@@ -74,6 +78,9 @@ public class RecipeActivity extends Activity {
 
 			TextView ingredient = new TextView(this);
 			ingredient.setText(s + "     ");
+			ingredient.setTextColor(Color.WHITE);
+			ingredient.setTextSize(16);
+			ingredient.setShadowLayer(2, 0, 5, Color.BLACK);
 			
 
 			if (cocktail.isCustom()) {
@@ -96,12 +103,18 @@ public class RecipeActivity extends Activity {
 				int ingPart = cocktail.getIngredients().get(s);
 				
 				if(ingPart > 1) {
-					parts.setText(ingPart + " parts ");
+					parts.setText("• " + ingPart + " parts ");
 				} else if(ingPart == 1) {
-					parts.setText(ingPart + " parts ");
+					parts.setText("• " + ingPart + " parts ");
 				} else {
-					parts.setText(" ");
+					parts.setText("• ");
 				}
+				
+				parts.setTextColor(Color.WHITE);
+				parts.setTextSize(16);
+				parts.setShadowLayer(2, 0, 5, Color.BLACK);
+				
+				
 				tr.addView(parts);
 			}
 			
