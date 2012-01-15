@@ -19,15 +19,14 @@ public class Ingredient implements Serializable{
 		this.sweetness = sweetness;
 		this.herbalness = herbalness;
 		this.sourness = sourness;
-		
-		/*try {
+		try {
 		    Class res = R.drawable.class;
 		    Field field = res.getField(imageID);
 		    this.imageID = field.getInt(null);
 		}
 		catch (Exception e) {
 		    Log.e("MyTag", "Failure to get drawable id.", e);
-		}*/
+		}
 	}
 	public String getName() {
 		return name;
