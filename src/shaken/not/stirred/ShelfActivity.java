@@ -92,6 +92,7 @@ public class ShelfActivity extends Activity implements SensorListener {
 		
 		prepareList();
 		spinnerStart();
+		shakerStart();
 		
 		hyperspaceJump = AnimationUtils.loadAnimation(this,
 				R.anim.hyperspace_jump);
@@ -108,7 +109,7 @@ public class ShelfActivity extends Activity implements SensorListener {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				setItemId(position);
-				//gridView.setAdapter(mAdapter);
+				gridView.setAdapter(mAdapter);
 	
 				//CHANGE FOR REMOVING LATER
 				drinkPicks.add(listName.get(position));
@@ -169,10 +170,11 @@ public class ShelfActivity extends Activity implements SensorListener {
 					shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_closed));
 					shakerOpen = true;
 				} else {
-					//shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_open));
+					shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_open));
 					shakerOpen = false;
 				}
 				
+				shaker.invalidate();
 //				i.putExtra("ingredients", drinkPicks);
 //				startActivity(i);
 			}
