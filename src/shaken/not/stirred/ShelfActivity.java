@@ -12,7 +12,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.hardware.SensorListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +34,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ShelfActivity extends Activity {
+public class ShelfActivity extends Activity implements SensorListener {
+	
+	//Shake Stuff
+    private SensorManager sensorMgr;
+    private long lastUpdate = -1;
+    private float x, y, z;
+    private float last_x, last_y, last_z;
+    private static final int SHAKE_THRESHOLD = 2000;
+    Vibrator v;
+	//Shake Stuff
+		
 	private ArrayList<String> listName;
 	private ArrayList<Integer> listIcon;
 	private GridviewAdapter mAdapter;
@@ -49,6 +62,20 @@ public class ShelfActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shelf);
+		
+		//Vibrator
+		v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		
+		// start motion detection
+		sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
+		boolean accelSupported = sensorMgr.registerListener(this,
+			SensorManager.SENSOR_ACCELEROMETER,
+			SensorManager.SENSOR_DELAY_GAME);
+		if (!accelSupported) {
+		    // on accelerometer on this device
+		    sensorMgr.unregisterListener(this,
+	                SensorManager.SENSOR_ACCELEROMETER);
+		}
 		
 		// Initialize DataStore
 		ds = DataStore.getInstance(this);
@@ -175,6 +202,42 @@ public class ShelfActivity extends Activity {
 		}
 
 		return false;
+	}
+
+	public void onAccuracyChanged(int sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onSensorChanged(int sensor, float[] values) {
+    	Log.d("sensor", "onSensorChanged: " + sensor);
+	if (sensor == SensorManager.SENSOR_ACCELEROMETER) {
+	    long curTime = System.currentTimeMillis();
+	    // only allow one update every 100ms.
+	    if ((curTime - lastUpdate) > 100) {
+		long diffTime = (curTime - lastUpdate);
+		lastUpdate = curTime;
+
+		x = values[SensorManager.DATA_X];
+		y = values[SensorManager.DATA_Y];
+		z = values[SensorManager.DATA_Z];
+
+		float speed = Math.abs(x+y+z - last_x - last_y - last_z) / diffTime * 10000;
+		
+		// Log.d("sensor", "diff: " + diffTime + " - speed: " + speed);
+		if (speed > SHAKE_THRESHOLD) {
+			//Log.d("sensor", "shake detected w/ speed: " + speed);
+		    //Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
+			Intent i = new Intent(this, ResultActivity.class);
+			v.vibrate(1000);
+			startActivity(i);
+		}
+		last_x = x;
+		last_y = y;
+		last_z = z;
+	    }
+	}
+		
 	}
 
 }
