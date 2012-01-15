@@ -74,7 +74,7 @@ public class RecipeActivity extends Activity {
 
 			TextView ingredient = new TextView(this);
 			ingredient.setText(s + "     ");
-			tr.addView(ingredient);
+			
 
 			if (cocktail.isCustom()) {
 				Spinner spinner = new Spinner(this);
@@ -93,10 +93,19 @@ public class RecipeActivity extends Activity {
 
 			} else {
 				TextView parts = new TextView(this);
-				int ing = cocktail.getIngredients().get(s);
-				parts.setText(ing + " parts");
+				int ingPart = cocktail.getIngredients().get(s);
+				
+				if(ingPart > 1) {
+					parts.setText(ingPart + " parts ");
+				} else if(ingPart == 1) {
+					parts.setText(ingPart + " parts ");
+				} else {
+					parts.setText(" ");
+				}
 				tr.addView(parts);
 			}
+			
+			tr.addView(ingredient);
 
 			ingTable.addView(tr);
 			/*
