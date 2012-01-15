@@ -77,7 +77,7 @@ public class DataStore{
 					if(crtCocktail != null){
 						recipes.put(crtCocktail.getName(), crtCocktail);
 					}
-					crtCocktail = new Cocktail(name, new HashMap<String, Integer>(), false, "cocktailIcon");
+					crtCocktail = new Cocktail(name, new HashMap<String, Integer>(), false, glass.imageId);
 				} else {
 					crtCocktail.addIngredient(name, parts);
 					if(!components.containsKey(name)){

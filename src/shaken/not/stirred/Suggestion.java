@@ -1,43 +1,21 @@
 package shaken.not.stirred;
 
-import java.util.HashMap;
-
-import android.widget.ImageView;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Suggestion extends Cocktail {
 	
-	private String difference;
 	
-	// if is subset, then the suggestion is the original minus the different ingredient,
-	// else it is the original plus the difference.
-	private boolean isSubsetOfOriginal;
 	private Cocktail original;
 	
-	
-	
-	public Suggestion(String name, String imageId, String difference,
-			boolean isSubsetOfOriginal, Cocktail original) {
-		super(name, original.getIngredients(), false, imageId);
-		this.getIngredients().remove(difference);
+	public Suggestion(Cocktail suggestion, Cocktail original) {
+		super(suggestion.getName(), suggestion.getIngredients(), false, suggestion.getImageId());
 		
-		this.difference = difference;
-		this.isSubsetOfOriginal = isSubsetOfOriginal;
 		this.original = original;
 	}
 	
-	public String getDifference() {
-		return difference;
-	}
-	public void setDifference(String difference) {
-		this.difference = difference;
-	}
-	public boolean isSubsetOfOriginal() {
-		return isSubsetOfOriginal;
-	}
-	public void setSubsetOfOriginal(boolean isSubsetOfOriginal) {
-		this.isSubsetOfOriginal = isSubsetOfOriginal;
-	}
+
 	public Cocktail getOriginal() {
 		return original;
 	}
@@ -46,8 +24,24 @@ public class Suggestion extends Cocktail {
 	}
 	
 	public String toString(){
-		return this.getName() + " ( "+ (isSubsetOfOriginal?"- ":"+ ") + this.getDifference() + ")";
+		StringBuilder builder = new StringBuilder(this.getName());
+		
+		Set<String> superset = new HashSet<String>(this.getIngredients().keySet());
+		superset.removeAll(this.original.getIngredients().keySet());
+		Set<String> subset = new HashSet<String>(this.original.getIngredients().keySet());
+		subset.removeAll(this.getIngredients().keySet());
+		
+		for(String nextPlus : superset){
+			builder.append(" (+").append(nextPlus).append(")");
+		}
+
+		for(String nextMinus : subset){
+			builder.append(" (-").append(nextMinus).append(")");
+		}
+		return builder.toString();
+		
 	}
-	
+
+
 
 }
