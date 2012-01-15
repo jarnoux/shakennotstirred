@@ -2,43 +2,52 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_shelf"
+        android:background="@drawable/shelf_bg_new"
         >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+   	<LinearLayout
+	   android:orientation="vertical"
+  	   android:padding="10dip"
+ 	   android:layout_width="fill_parent"
+ 	   android:layout_height="wrap_content">
 
-    <GridView
-        android:id="@+id/gridview"
-        android:layout_width="fill_parent"
-        android:layout_height="361dp"
-        android:columnWidth="60dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="5dp" >
+	    <Spinner 
+	        android:id="@+id/spinner"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:prompt="@string/planet_prompt"
+	    />
+
+	    <GridView
+	        android:id="@+id/gridview"
+	        android:layout_width="fill_parent"
+	        android:layout_height="282dp"
+	        android:columnWidth="80dp"
+	        android:gravity="center"
+	        android:horizontalSpacing="10dp"
+	        android:numColumns="3"
+	        android:stretchMode="columnWidth"
+	        android:verticalSpacing="5dp" >
 
-    </GridView>
+	</GridView>
+		    
+	</LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:layout_gravity="bottom">
+	<FrameLayout
+	    android:id="@+id/frameLayout1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" 
+	    android:layout_gravity="bottom">
 
-        <ImageView
-            android:id="@+id/shaker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/shaker_open" 
-            android:paddingBottom="10dp"/>
-
-    </FrameLayout>
-
+	    <ImageView
+	        android:id="@+id/shaker"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="left"
+	        android:src="@drawable/shaker_open"
+	        android:paddingLeft="20dp" 
+	        android:paddingBottom="10dp"/>
+	</FrameLayout>
+	
 
 </FrameLayout>
