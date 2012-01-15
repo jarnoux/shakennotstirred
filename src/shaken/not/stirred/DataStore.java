@@ -1,6 +1,6 @@
 package shaken.not.stirred;
 
-import java.io.File;
+import java.io.BufferedInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +9,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import android.app.Activity;
 
 public class DataStore{
 
@@ -17,18 +20,37 @@ public class DataStore{
 
 	private Map<String, Cocktail> recipes = new HashMap<String, Cocktail>();
 	private Map<String, List<String>> components = new HashMap<String, List<String>>();
+	private static final String ingredientsFile = "ingredients.csv";
+	private static final String recipesFile = "recipes.csv";
 	
-	public DataStore(String ingredientsFile, String recipesFile) {
+	private static DataStore singleton;
+	private Activity act;
+	
+	public DataStore(Activity act) {
+		this.act = act;
 		readIngredients(ingredientsFile);
 		readRecipes(recipesFile);
+	}
+	
+	/**
+	 * 
+	 * @param context used to get the resources files. Used only the first time
+	 * this is called by the app.
+	 * @return
+	 */
+	public static DataStore getInstance(Activity context){
+		if(singleton == null){
+			singleton = new DataStore(context);
+		}
+		return singleton;
 	}
 	
 	private void readRecipes(String recipesFile) {
 		
 		try {
-			Scanner in = new Scanner(new File(recipesFile));
+			Scanner in = new Scanner(new BufferedInputStream(this.act.getResources().openRawResource(R.raw.recipes)));
 			// since it's a comma-separated file
-			in.useDelimiter(",");
+			in.useDelimiter(Pattern.compile("[,\n\r]"));
 			// skip the first header line
 			in.nextLine();
 			
@@ -39,11 +61,16 @@ public class DataStore{
 			Cocktail.GlassType glass;
 			Cocktail crtCocktail = null;
 			while (in.hasNext()) {
-				name = in.next();
-				isDrink = (in.nextInt() == 1);
+				name = in.next().toLowerCase();
+				isDrink = false;
+				if(in.nextInt() == 1){
+					isDrink = true;
+				}
 				try{
 					parts = in.nextInt();
-				} catch (InputMismatchException e){}
+				} catch (InputMismatchException e){
+					in.next();
+				}
 				glass = Cocktail.GlassType.valueOf(in.next());
 				
 				if(isDrink){
@@ -56,10 +83,8 @@ public class DataStore{
 					if(!components.containsKey(name)){
 						components.put(name, new ArrayList<String>());
 					}
-					components.get(name).add(name);
+					components.get(name).add(crtCocktail.getName());
 				}
-				
-				in.nextLine();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,9 +95,9 @@ public class DataStore{
 	public void readIngredients(String ingredientsFile) {
 		
 		try {
-			Scanner in = new Scanner(new File(ingredientsFile));
+			Scanner in = new Scanner(new BufferedInputStream(this.act.getResources().openRawResource(R.raw.ingredients)));
 			// since it's a comma-separated file
-			in.useDelimiter(",");
+			in.useDelimiter(Pattern.compile("[,\n\r]"));
 			// skip the first header line
 			in.nextLine();
 			
@@ -80,19 +105,18 @@ public class DataStore{
 			String name;
 			int alcohol, sweetness, herbalness, sourness = 0;
 			while (in.hasNext()) {
-				name = in.next();
+				name = in.next().toLowerCase();
 				alcohol = in.nextInt();
 				sweetness = in.nextInt();
 				herbalness = in.nextInt();
 				sourness = in.nextInt();
 				Ingredient ingredient;
-				if(alcohol != 0){
+				if(alcohol == 0){
 					ingredient = new Mixer(name, sweetness, herbalness, sourness);
 				} else {
 					ingredient = new Alcohol(name, sweetness, herbalness, alcohol);
 				}
 				this.ingredients.put(name, ingredient);
-				in.nextLine();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
