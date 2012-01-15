@@ -32,23 +32,37 @@
    	    </GridView>
    	</LinearLayout>
 
-	<FrameLayout
+	<LinearLayout
 	    android:id="@+id/frameLayout1"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content" 
 	    android:layout_gravity="bottom">
 
-	    <ImageView
-	        android:id="@+id/shaker"
+	    <LinearLayout 
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content">
+	    
+		    <ImageView
+		        android:id="@+id/shaker"
+		        android:layout_width="wrap_content"
+		        android:layout_height="fill_parent"
+		        android:layout_gravity="left"
+		        android:src="@drawable/shaker_open"
+		        android:paddingTop="20dp"
+		        android:paddingLeft="20dp" 
+		        android:paddingRight="20dp" 
+		        android:paddingBottom="10dp"/>
+	    
+	    </LinearLayout> 
+	    
+	    <LinearLayout
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="left"
-	        android:src="@drawable/shaker_open"
-	        android:paddingTop="20dp"
-	        android:paddingLeft="20dp" 
-	        android:paddingRight="20dp" 
-	        android:paddingBottom="10dp"/>
-	</FrameLayout>
+	    	android:layout_height="fill_parent"
+	    	android:layout_orientation="vertical"
+	    	>
+		    
+	    </LinearLayout>
+	</LinearLayout>
 	
 
 </FrameLayout>
