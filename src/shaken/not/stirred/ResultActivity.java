@@ -8,10 +8,14 @@ import java.util.Map;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -33,7 +37,7 @@ public class ResultActivity extends Activity {
         setContentView(R.layout.result);
 		ListView suggestionListView = (ListView) findViewById(R.id.suggestionsListView);
 		
-		suggestionListView.setAdapter(new ArrayAdapter<Suggestion>(this, R.layout.suggestion_item, suggestedCocktails));
+		suggestionListView.setAdapter(new SuggestionArrayAdapter(this, R.layout.suggestion_item, suggestedCocktails));
 		final Activity self = this;
 		suggestionListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -107,6 +111,40 @@ public class ResultActivity extends Activity {
 		((TextView)findViewById(R.id.cocktailNameView)).setText(createdCocktail.getName());
 		((ImageView)findViewById(R.id.cocktailIconView)).setImageResource(createdCocktail.getImageId());
 
+	}
+	
+	private class SuggestionArrayAdapter extends ArrayAdapter<Suggestion>{
+		
+		private List<Suggestion> suggestions;
+
+		public SuggestionArrayAdapter(Context context, int textViewResourceId,
+				List<Suggestion> objects) {
+			super(context, textViewResourceId, objects);
+			this.suggestions = objects;
+		}
+		
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent){
+
+	        View row = convertView;
+	        if (row == null) {
+	            // ROW INFLATION
+	            LayoutInflater inflater = (LayoutInflater) this.getContext()
+	                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	            row = inflater.inflate(R.layout.suggestion_item, parent, false);
+	        }
+	        
+	        Suggestion suggestion = this.suggestions.get(position);
+	        ImageView cocktailIcon = (ImageView) row.findViewById(R.id.cocktailIcon);
+	        TextView cocktailName = (TextView) row.findViewById(R.id.cocktailName);
+	        TextView cocktailAdditions = (TextView) row.findViewById(R.id.cocktailAdditions);
+
+	        cocktailIcon.setImageResource(suggestion.getImageId());
+	        cocktailName.setText(suggestion.getName());
+	        cocktailAdditions.setText(suggestion.getAdditions());
+			return row;
+		}
+		
 	}
 
 }
