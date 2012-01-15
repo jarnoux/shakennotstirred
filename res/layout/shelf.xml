@@ -6,32 +6,31 @@
         >
 
    	<LinearLayout
-	   android:orientation="vertical"
-  	   android:padding="10dip"
- 	   android:layout_width="fill_parent"
- 	   android:layout_height="wrap_content">
+   	    android:layout_width="fill_parent"
+   	    android:layout_height="wrap_content"
+   	    android:orientation="vertical"
+   	    android:padding="10dip" >
 
-	    <Spinner 
-	        android:id="@+id/spinner"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:prompt="@string/planet_prompt"
-	    />
-
-	    <GridView
-	        android:id="@+id/gridview"
-	        android:layout_width="fill_parent"
-	        android:layout_height="282dp"
-	        android:columnWidth="80dp"
-	        android:gravity="center"
-	        android:horizontalSpacing="10dp"
-	        android:numColumns="3"
-	        android:stretchMode="columnWidth"
-	        android:verticalSpacing="5dp" >
+   	    <Spinner
+   	        android:id="@+id/spinner"
+   	        android:layout_width="fill_parent"
+   	        android:layout_height="wrap_content"
+   	        android:prompt="@string/planet_prompt" />
 
-	</GridView>
-		    
-	</LinearLayout>
+   	    <GridView
+   	        android:id="@+id/gridview"
+   	        android:layout_width="fill_parent"
+   	        android:layout_height="300dp"
+   	        android:layout_weight="1.24"
+   	        android:columnWidth="80dp"
+   	        android:gravity="center"
+   	        android:horizontalSpacing="10dp"
+   	        android:numColumns="3"
+   	        android:scrollbarFadeDuration="0"
+   	        android:stretchMode="columnWidth"
+   	        android:verticalSpacing="5dp" >
+   	    </GridView>
+   	</LinearLayout>
 
 	<FrameLayout
 	    android:id="@+id/frameLayout1"
@@ -45,7 +44,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left"
 	        android:src="@drawable/shaker_open"
+	        android:paddingTop="20dp"
 	        android:paddingLeft="20dp" 
+	        android:paddingRight="20dp" 
 	        android:paddingBottom="10dp"/>
 	</FrameLayout>
 	

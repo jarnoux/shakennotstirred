@@ -1,1 +1,25 @@
-ingredient,~% Alcohol,Sweet,Herbal,SourGin,40,0,0,0Rum,40,0,0,0Scotch,40,0,0,0Vodka,40,0,0,0Tequila,40,0,0,0Beer,5,0,0,0Champagne,15,0,0,0White Wine,15,0,0,0Red Wine,15,0,0,0Club Soda,0,0,0,07Up,0,5,0,0Coke,0,5,0,0Tonic,0,5,0,0Ginger Ale,0,5,0,0Pineapple Juice,0,5,0,3Cranberry Juice,0,5,0,1Orange Juice,0,5,0,3Grapefruit Juice,0,4,0,3Lime Juice (rose's),0,4,0,3Grenadine,0,5,0,0Simple Syrup,0,5,0,0Tomato Juice,0,0,0,0Cream,0,0,0,0Half and Half,0,0,0,0Peach Nectar,0,5,0,0Coffee (hot),0,0,0,0Fresh Lemon Juice,0,0,0,5Fresh Lime Juice,0,1,0,5
+"ingredient","~% Alcohol","Sweet","Herbal","Sour",
+"7Up",0,5,0,0,"seven_up"
+"Club Soda",0,0,0,0,"club_soda"
+"Coffee (hot)",0,0,0,0,"coffee"
+"Coke",0,5,0,0,"coke"
+"Cranberry Juice",0,5,0,1,"cranberry_juice"
+"Cream",0,0,0,0,"cream"
+"Fresh Lemon Juice",0,0,0,5,"fresh_lemon_juice"
+"Fresh Lime Juice",0,1,0,5,"fresh_lime_juice"
+"Gin",40,0,0,0,"gin"
+"Ginger Ale",0,5,0,0,"ginger_ale"
+"Grapefruit Juice",0,4,0,3,"grapefruit_juice"
+"Grenadine",0,5,0,0,"grenadine"
+"Half and Half",0,0,0,0,"half_and_half"
+"Lime Juice (rose's)",0,4,0,3,"lime_juice"
+"Orange Juice",0,5,0,3,"orange_juice"
+"Peach Nectar",0,5,0,0,"peach_nectar"
+"Pineapple Juice",0,5,0,3,"pineapple_juice"
+"Rum",40,0,0,0,"rum"
+"Scotch",40,0,0,0,"scotch"
+"Simple Syrup",0,5,0,0,"simple_syrup"
+"Tequila",40,0,0,0,"tequila"
+"Tomato Juice",0,0,0,0,"tomato_juice"
+"Tonic",0,5,0,0,"tonic"
+"Vodka",40,0,0,0,"vodka"

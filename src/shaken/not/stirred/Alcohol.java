@@ -5,8 +5,8 @@ public class Alcohol extends Ingredient {
 	private int alcoholPercentage;
 
 	public Alcohol(String name, int sweetness, int herbalness,
-			int alcoholPercentage) {
-		super(name, sweetness, herbalness, 0);
+			int alcoholPercentage, String imageID) {
+		super(name, sweetness, herbalness, 0, imageID);
 		this.alcoholPercentage = alcoholPercentage;
 	}
 
