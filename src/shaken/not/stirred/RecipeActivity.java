@@ -49,7 +49,7 @@ public class RecipeActivity extends Activity {
 		ingredients.put("coke", 4);
 		// ingredients.put("Lime Juice", 1);
 		// ingredients.put("Simple Syrup", 1);
-		cocktail = new Cocktail("Gimlet", ingredients, true, 1);
+		//cocktail = new Cocktail("Gimlet", ingredients, true, 1);
 
 		// Cocktail cocktail = null;
 		Bundle extras = getIntent().getExtras();

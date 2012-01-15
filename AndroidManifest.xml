@@ -15,18 +15,18 @@
         android:theme="@android:style/Theme.Light" >
         <activity
              android:name=".ShelfActivity">
-            <intent-filter>
+           
+        </activity>
+        <activity android:name=".ResultActivity">
+                         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ResultActivity">
-        </activity>
         <activity
             android:name=".RecipeActivity"
             android:label="@string/app_name" >
-
         </activity>
     </application>
 

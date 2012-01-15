@@ -52,7 +52,7 @@ public class ResultActivity extends Activity {
 			
 			public void onClick(View v) {
 				Intent i = new Intent(self, RecipeActivity.class);
-				i.putExtra("cocktail", DataStore.getInstance(self).getRecipes().get(createdCocktail.getName()));
+				i.putExtra("cocktail", createdCocktail);
 				startActivity(i);
 			}
 		});
@@ -68,7 +68,7 @@ public class ResultActivity extends Activity {
 		//TODO be called by the first activity
 		Set<String> givenIngredients = new HashSet<String>();
 		givenIngredients.add("rum");
-		givenIngredients.add("coke");
+		//givenIngredients.add("coke");
 		
 		Map<String, Integer> quantities = new HashMap<String, Integer>();
 		for(String givenIngredient : givenIngredients){
