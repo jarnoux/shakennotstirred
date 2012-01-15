@@ -102,7 +102,7 @@ public class DataStore{
 			in.nextLine();
 			
 			// read each line of the file one at a time
-			String name;
+			String name, imageID;
 			int alcohol, sweetness, herbalness, sourness = 0;
 			while (in.hasNext()) {
 				name = in.next().toLowerCase();
@@ -110,11 +110,15 @@ public class DataStore{
 				sweetness = in.nextInt();
 				herbalness = in.nextInt();
 				sourness = in.nextInt();
+				imageID = in.next();
+				
+				System.out.println(imageID);
+				
 				Ingredient ingredient;
 				if(alcohol == 0){
-					ingredient = new Mixer(name, sweetness, herbalness, sourness);
+					ingredient = new Mixer(name, sweetness, herbalness, sourness, Ingredient.IngredientType.valueOf(imageID).imageId);
 				} else {
-					ingredient = new Alcohol(name, sweetness, herbalness, alcohol);
+					ingredient = new Alcohol(name, sweetness, herbalness, alcohol, Ingredient.IngredientType.valueOf(imageID).imageId);
 				}
 				this.ingredients.put(name, ingredient);
 			}
