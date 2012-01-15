@@ -15,16 +15,26 @@
         android:theme="@android:style/Theme.Light" >
         <activity
              android:name=".ShelfActivity"
+<<<<<<< HEAD
             android:label="@string/app_name" >
             <intent-filter>
+=======
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name=".ResultActivity">
+            <intent-filter>
+>>>>>>> branch 'master' of https://tjdu@github.com/jarnoux/shakennotstirred.git
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".ResultActivity">
             
         </activity>
+=======
+>>>>>>> branch 'master' of https://tjdu@github.com/jarnoux/shakennotstirred.git
         <activity
             android:name=".RecipeActivity"
             android:label="@string/app_name" >
