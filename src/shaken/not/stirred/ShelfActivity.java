@@ -1,10 +1,15 @@
 package shaken.not.stirred;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,17 +37,25 @@ public class ShelfActivity extends Activity {
 	private ArrayAdapter<CharSequence> adapter;
 	private GridView gridView;
 	private ImageView shaker;
+
+	private HashSet<String> drinkPicks;
+
 	public DataStore ds;
 
 	private Animation hyperspaceJump;
+
+	private Intent i;
 
 	public void onCreate(Bundle savedInstanceState) {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shelf);
-
-		// ds = DataStore.getInstance(this);
-
+		
+		ds = DataStore.getInstance(this);
+		
+		drinkPicks = new HashSet<String>();
+		prepareList();
+		
 		Spinner spinner = (Spinner) findViewById(R.id.spinner);
 		adapter = ArrayAdapter.createFromResource(this, R.array.planets_array,
 				android.R.layout.simple_spinner_item);
@@ -51,19 +64,24 @@ public class ShelfActivity extends Activity {
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
-		prepareList();
-
 		hyperspaceJump = AnimationUtils.loadAnimation(this,
 				R.anim.hyperspace_jump);
 
 		shaker = (ImageView) findViewById(R.id.shaker);
 		shaker.setClickable(true);
 		
+		i = new Intent(this, ResultActivity.class);
+		
+
 		// Implement On click listener
 		shaker.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_closed));
+
+				i.putExtra("ingredients", drinkPicks);
+				startActivity(i);
+
 			}
 		});
 		
@@ -81,7 +99,9 @@ public class ShelfActivity extends Activity {
 					int position, long id) {
 				setItemId(position);
 				gridView.setAdapter(mAdapter);
-				shaker.startAnimation(hyperspaceJump);
+	
+				//CHANGE FOR REMOVING LATER
+				drinkPicks.add(listName.get(position));
 			}
 		});
 
@@ -103,21 +123,22 @@ public class ShelfActivity extends Activity {
 						"Showing only " + choice.toLowerCase() + " flavors",
 						Toast.LENGTH_LONG).show();
 				/*
-				 * if("Alcoholic".equals(choice)) { ingList =
-				 * ds.getIngredientsSortedByAlcohol(); }
-				 */
+				 if("Alcoholic".equals(choice)) { ingList =
+				 ds.getIngredientsSortedByAlcohol(); }*/
 			}
 
 			/*
-			 * listName = new ArrayList<String>(); listIcon = new
-			 * ArrayList<Integer>();
-			 * 
-			 * for (int i = 0; i < ingList.size(); i++) {
-			 * listName.add(ingList.get(i).getName());
-			 * listIcon.add(ingList.get(i).getImageID()); }
-			 * 
-			 * gridView.setAdapter(mAdapter);
-			 */
+			listName = new ArrayList<String>(); 
+			listIcon = new ArrayList<Integer>();
+			  
+			for (int i = 0; i < ingList.size(); i++) {
+				listName.add(ingList.get(i).getName());
+				listIcon.add(ingList.get(i).getImageID()); 
+			}
+			  
+			gridView.setAdapter(mAdapter);
+			*/
+
 		}
 
 		public void onNothingSelected(AdapterView parent) {
@@ -125,90 +146,19 @@ public class ShelfActivity extends Activity {
 		}
 	}
 
-	public void prepareList()
-
-	{
-
+	public void prepareList() {
 		listName = new ArrayList<String>();
-
-		listName.add("India");
-
-		listName.add("Brazil");
-
-		listName.add("Canada");
-
-		listName.add("China");
-
-		listName.add("France");
-
-		listName.add("Germany");
-
-		listName.add("Iran");
-
-		listName.add("Italy");
-
-		listName.add("Japan");
-
-		listName.add("Korea");
-
-		listName.add("Mexico");
-
-		listName.add("Netherlands");
-
-		listName.add("Portugal");
-
-		listName.add("Russia");
-
-		listName.add("Saudi Arabia");
-
-		listName.add("Spain");
-
-		listName.add("Turkey");
-
-		listName.add("United Kingdom");
-
-		listName.add("United States");
-
 		listIcon = new ArrayList<Integer>();
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.blue_curacao);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.blue_curacao);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.amaretto);
-
-		listIcon.add(R.drawable.campari);
-
-		listIcon.add(R.drawable.campari);
-
+		
+		Map<String, Ingredient> ingMap =  ds.getIngredients();
+		Iterator<String> keyIterator = ingMap.keySet().iterator();
+		
+		while (keyIterator.hasNext()) {
+			String name = keyIterator.next();
+			
+			listName.add(name);
+			listIcon.add(ingMap.get(name).getImageID());
+		}
 	}
 
 	public boolean setItemId(int position) {
