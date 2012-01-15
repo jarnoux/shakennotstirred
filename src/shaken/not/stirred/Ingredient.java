@@ -108,7 +108,9 @@ public class Ingredient implements Serializable{
 		Peach_nectar(R.drawable.peach_nectar),
 		Coffee(R.drawable.coffee),
 		Fresh_lemon_juice(R.drawable.fresh_lemon_juice),
-		Fresh_lime_juice(R.drawable.fresh_lime_juice);
+		Fresh_lime_juice(R.drawable.fresh_lime_juice),
+		Sweet_and_sour(R.drawable.sweet_and_sour);
+		
 		
 		IngredientType(int imageId){
 			this.imageId = imageId;

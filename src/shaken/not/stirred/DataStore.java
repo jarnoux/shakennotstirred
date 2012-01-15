@@ -86,6 +86,7 @@ public class DataStore{
 					components.get(name).add(crtCocktail.getName());
 				}
 			}
+			recipes.put(crtCocktail.getName(), crtCocktail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
