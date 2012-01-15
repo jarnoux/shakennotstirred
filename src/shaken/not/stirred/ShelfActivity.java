@@ -38,13 +38,11 @@ public class ShelfActivity extends Activity {
 	private ArrayAdapter<CharSequence> adapter;
 	private GridView gridView;
 	private ImageView shaker;
+	private boolean shakerOpen;
 
 	private HashSet<String> drinkPicks;
-
 	public DataStore ds;
-
 	private Animation hyperspaceJump;
-
 	private Intent i;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,40 +50,17 @@ public class ShelfActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shelf);
 		
+		// Initialize DataStore
 		ds = DataStore.getInstance(this);
 		
+		shakerOpen = true;
 		drinkPicks = new HashSet<String>();
+		
 		prepareList();
+		spinnerStart();
 		
-		
-		Spinner spinner = (Spinner) findViewById(R.id.spinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.planets_array,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
-
 		hyperspaceJump = AnimationUtils.loadAnimation(this,
 				R.anim.hyperspace_jump);
-
-		shaker = (ImageView) findViewById(R.id.shaker);
-		shaker.setClickable(true);
-		
-		i = new Intent(this, ResultActivity.class);
-		
-
-		// Implement On click listener
-		shaker.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_closed));
-
-				i.putExtra("ingredients", drinkPicks);
-				startActivity(i);
-
-			}
-		});
-		
 		
 		// prepared arraylist and passed it to the Adapter class
 		mAdapter = new GridviewAdapter(this, listName, listIcon);
@@ -107,7 +82,7 @@ public class ShelfActivity extends Activity {
 		});
 
 	}
-
+	
 	public class MyOnItemSelectedListener implements OnItemSelectedListener {
 
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,
@@ -119,7 +94,7 @@ public class ShelfActivity extends Activity {
 			if ("All flavors".equals(choice)) {
 				Toast.makeText(parent.getContext(), "Showing all flavors",
 						Toast.LENGTH_LONG).show();
-//				prepareList();
+				//prepareList();
 			} else {
 				Toast.makeText(parent.getContext(),
 						"Showing only " + choice.toLowerCase() + " flavors",
@@ -147,6 +122,38 @@ public class ShelfActivity extends Activity {
 		}
 	}
 
+	public void shakerStart() {
+		i = new Intent(this, ResultActivity.class);
+		
+		shaker = (ImageView) findViewById(R.id.shaker);
+		shaker.setClickable(true);
+
+		// Implement On click listener
+		shaker.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				if(shakerOpen) { 
+					shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_closed));
+					shakerOpen = true;
+				} else {
+					//shaker.setImageDrawable(getResources().getDrawable(R.drawable.shaker_open));
+					shakerOpen = false;
+				}
+				
+//				i.putExtra("ingredients", drinkPicks);
+//				startActivity(i);
+			}
+		});
+	}
+	
+	public void spinnerStart() {
+		Spinner spinner = (Spinner) findViewById(R.id.spinner);
+		adapter = ArrayAdapter.createFromResource(this, R.array.planets_array,
+				android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+	}
+	
 	public void prepareList() {
 		listName = new ArrayList<String>();
 		listIcon = new ArrayList<Integer>();
