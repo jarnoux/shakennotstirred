@@ -35,47 +35,53 @@ public class ResultActivity extends Activity {
 	public void onStart(){
 		super.onStart();
 		
-		//TODO reset in onStart() each time we get a new set of ingredients and look into the DB
 		Bundle extras = getIntent().getExtras();
 //		Set<String> givenIngredients = (Set<String>) extras.get("ingredients");
+		//TODO be called by the first activity
 		Set<String> givenIngredients = new HashSet<String>();
 		givenIngredients.add("rum");
 		givenIngredients.add("coke");
+		
 		Map<String, Integer> quantities = new HashMap<String, Integer>();
-		List<String> supersetCocktails = new ArrayList<String>();
-		List<String> subsetCocktails = new ArrayList<String>();
+		for(String givenIngredient : givenIngredients){
+			quantities.put(givenIngredient, 1);
+		}
+		List<String> relatedCocktails = new ArrayList<String>();
+		
+		createdCocktail = null;
 		
 		for(Cocktail nextCocktail : DataStore.getInstance(this).getRecipes().values()){
-			if(nextCocktail.getIngredients().keySet().containsAll(givenIngredients)){
-				supersetCocktails.add(nextCocktail.getName());
-			}
 			boolean subset = false;
 			for(String nextIngredient : givenIngredients){
-				if(DataStore.getInstance(this).getRecipes().get(nextCocktail).getIngredients().keySet().contains(nextIngredient)){
-					subsetCocktails.add(nextCocktail.getName());
+				if(DataStore.getInstance(this).getRecipes().get(nextCocktail.getName()).getIngredients().keySet().contains(nextIngredient)){
+					if(nextCocktail.getIngredients().keySet().equals(givenIngredients)){
+						createdCocktail = nextCocktail;
+					} else {
+						relatedCocktails.add(nextCocktail.getName());
+					}
 					break;
 				}
 			}
 			
 		}
 		
-		if(!supersetCocktails.isEmpty()){
-			// take the first possible cocktail
-			createdCocktail = DataStore.getInstance(this).getRecipes().get(supersetCocktails.get(0));
-		} else {
+		if(createdCocktail == null){
 			// you made that up, didn't you...
-			createdCocktail = new Cocktail("<new cocktail>", quantities, true, "defaultCocktailImageId");
-		}
+			createdCocktail = new Cocktail("<new cocktail>", quantities, true, R.drawable.cocktail_2);
+		} 
+
+		if(!relatedCocktails.isEmpty()){
+			Cocktail crtCocktail;
+			for(String nextSuggestedCocktail : relatedCocktails){
+				crtCocktail = DataStore.getInstance(this).getRecipes().get(nextSuggestedCocktail);
+				suggestedCocktails.add(new Suggestion(crtCocktail, createdCocktail));
+			}
+			
+		} 
 		
 		((TextView)findViewById(R.id.cocktailNameView)).setText(createdCocktail.getName());
-		((ImageView)findViewById(R.id.cocktailIconView)).setImageResource(R.drawable.bourbon_raw);
+		((ImageView)findViewById(R.id.cocktailIconView)).setImageResource(createdCocktail.getImageId());
 
-        //TODO: populate w/ database combinations
-        suggestedCocktails.add( new Suggestion("Cool cocktail", "cocktailIcon", "gin", true, createdCocktail));
-        suggestedCocktails.add( new Suggestion("Nice cocktail", "cocktailIcon", "vodka", false, createdCocktail));
-        suggestedCocktails.add( new Suggestion("Genius cocktail", "cocktailIcon", "wiskey", true, createdCocktail));
-        suggestedCocktails.add( new Suggestion("Amazing cocktail", "cocktailIcon", "tequila", true, createdCocktail));
-        
 	}
 
 }

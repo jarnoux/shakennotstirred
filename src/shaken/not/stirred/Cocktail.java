@@ -10,9 +10,9 @@ public class Cocktail implements Serializable{
 	private Map<String, Integer> ingredients;
 	private final String name;
 	private final boolean isCustom;
-	private String imageId;
+	private int imageId;
 
-	public Cocktail(String name, Map<String, Integer> ingredients, boolean isCustom, String imageId) {
+	public Cocktail(String name, Map<String, Integer> ingredients, boolean isCustom, int imageId) {
 		this.name = name;
 		this.setIngredients(ingredients);
 		this.isCustom = isCustom;
@@ -41,23 +41,23 @@ public class Cocktail implements Serializable{
 		return isCustom;
 	}
 
-	public String getImageId() {
+	public int getImageId() {
 		return imageId;
 	}
 
-	public void setImage(String imageId) {
+	public void setImage(int imageId) {
 		this.imageId = imageId;
 	}
 	
 	public enum GlassType {
-		Highball(0),
-		Stem(0),
-		Rocks(0),
-		Cocktail(0),
-		Zombie(0),
-		Collins(0),
-		Coffee(0),
-		Shot(0);
+		Highball(R.drawable.highball_glass),
+		Stem(R.drawable.stem_glass),
+		Rocks(R.drawable.rocks_glass),
+		Cocktail(R.drawable.cocktail_glass),
+		Zombie(R.drawable.zombie_glass),
+		Collins(R.drawable.collins_glass),
+		Coffee(R.drawable.coffee_glass),
+		Shot(R.drawable.shot_glass);
 		
 		GlassType(int imageId){
 			this.imageId = imageId;
