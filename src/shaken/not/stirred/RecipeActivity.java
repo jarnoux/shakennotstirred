@@ -38,7 +38,7 @@ public class RecipeActivity extends Activity {
 	private final Handler mTwitterHandler = new Handler();
 	private static Cocktail cocktail;
 	final String token1 = "14759032-zRSLgyknRUc5BTp0Jz9L03eL5IM7TBh1fGPLTn2vi";
-	final String token2 = "oXaAa6yJW8nBqvvnbidFUZ0jHte2NfnR3xxxNaIfU";
+	final String token2 = "oXaAa6yJW8ndFUZ0jHte2BqvvnbiNfnR3xxxNaIfU";
 
 	final Runnable mUpdateTwitterNotification = new Runnable() {
 		public void run() {
